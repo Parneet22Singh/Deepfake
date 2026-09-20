@@ -26,7 +26,11 @@ from .scenes import detect_scene_cuts
 from .spatial import analyze_spatial
 from .temporal import analyze_temporal
 from .wavelet import analyze_wavelet
-from .production import build_analysis_outputs
+from .production import (
+    apply_reconciliation_to_fusion,
+    build_analysis_outputs,
+    reconcile_analysis_outputs,
+)
 
 
 @dataclass
@@ -87,6 +91,9 @@ def analyze_video(path: str, config: AnalysisConfig = None) -> AnalysisResult:
         specialist_checkpoint=config.specialist_checkpoint or None,
         binary_checkpoint=config.binary_checkpoint or None,
     )
+    report.analysis_reconciliation = reconcile_analysis_outputs(report.analysis_outputs)
+    apply_reconciliation_to_fusion(report.fusion, report.analysis_reconciliation)
+    report.analysis_outputs["deterministic_engine"]["fusion"] = report.fusion
     return report
 
 

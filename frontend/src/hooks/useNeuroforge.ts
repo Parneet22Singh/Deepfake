@@ -15,6 +15,10 @@ export interface AnalysisOutputs {
   deterministic_engine: ForensicOutput;
   specialist_three_class_router: ForensicOutput;
   binary_authenticity_router: ForensicOutput;
+  directional_analysis: ForensicOutput & {
+    predicted?: string;
+    directional_label?: string;
+  };
   production_five_layer: ForensicOutput & {
     layers?: Array<{
       id: string;
@@ -24,6 +28,14 @@ export interface AnalysisOutputs {
     }>;
     limitations?: string[];
   };
+}
+
+export interface AnalysisReconciliation {
+  status: "agreed" | "conflict" | "inconclusive" | string;
+  consensus: "synthetic" | "original" | "review" | string;
+  sources: Record<string, string>;
+  conflicting_sources: string[];
+  policy: string;
 }
 
 export interface LayerData {
@@ -144,6 +156,7 @@ export interface AnalysisResult {
   abstentionReason?: string | null;
   contentContext?: ContentContext;
   analysis_outputs?: AnalysisOutputs;
+  analysis_reconciliation?: AnalysisReconciliation;
   deterministicReport?: {
     metadata?: Record<string, unknown>;
     sampling?: Record<string, unknown>;
@@ -291,6 +304,7 @@ export function useNeuroforge() {
       social: { x: "", redditTitle: "", redditBody: "", instagram: "", linkedin: "" },
       decisionStatus: "verdict",
       analysis_outputs: outputs,
+      analysis_reconciliation: report.analysis_reconciliation,
       deterministicReport: {
         metadata: report.metadata,
         sampling: report.sampling,

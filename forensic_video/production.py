@@ -13,11 +13,15 @@ import sys
 from pathlib import Path
 from typing import Any, Mapping, Optional, Sequence
 
+from .evaluation import classify_report
+
 
 DEFAULT_SNAPSHOT_ROOT = (
     r"C:\Users\parne\Downloads\The-Neuroforge-production.worktrees"
     r"\The-Neuroforge-production-final-year-snapshot-2026-09-10"
 )
+ROUTER_MIN_CONFIDENCE = 0.70
+ROUTER_MIN_MARGIN = 0.15
 _TORCHVISION_COMPAT_LIBRARY: Any = None
 
 
@@ -35,6 +39,40 @@ def _mean_scores(branches: Mapping[str, Any], names: Sequence[str]) -> float | N
         if (score := _finite_score((branches.get(name) or {}).get("score"))) is not None
     ]
     return round(sum(scores) / len(scores), 6) if scores else None
+
+
+def _apply_router_policy(output: Mapping[str, Any]) -> dict[str, Any]:
+    """Apply this repository's router gate without changing protected files."""
+    result = dict(output)
+    probabilities = result.get("probabilities")
+    if not isinstance(probabilities, Mapping) or not probabilities:
+        return result
+    numeric = {
+        str(label): float(value)
+        for label, value in probabilities.items()
+        if _finite_score(value) is not None
+    }
+    if not numeric:
+        return result
+    ranked = sorted(numeric.items(), key=lambda item: item[1], reverse=True)
+    label, confidence = ranked[0]
+    margin = confidence - ranked[1][1] if len(ranked) > 1 else confidence
+    classified = (
+        confidence >= ROUTER_MIN_CONFIDENCE
+        and margin >= ROUTER_MIN_MARGIN
+    )
+    result.update({
+        "status": "classified" if classified else "abstain",
+        "label": label if classified else "unknown",
+        "confidence": round(confidence, 4),
+        "margin": round(margin, 4),
+        "router_policy": {
+            "minimum_confidence": ROUTER_MIN_CONFIDENCE,
+            "minimum_margin": ROUTER_MIN_MARGIN,
+            "source": "repository_gate; protected checkpoint unchanged",
+        },
+    })
+    return result
 
 
 def build_five_layer_output(report: Mapping[str, Any]) -> dict[str, Any]:
@@ -161,8 +199,8 @@ def run_optional_routers(
     outputs: dict[str, Any] = {}
     if specialist:
         safe_path = _safe_checkpoint(specialist, root)
-        outputs["specialist_three_class_router"] = helper.classify_with_router(
-            list(frames), safe_path
+        outputs["specialist_three_class_router"] = _apply_router_policy(
+            helper.classify_with_router(list(frames), safe_path)
         )
     else:
         outputs["specialist_three_class_router"] = {
@@ -170,8 +208,8 @@ def run_optional_routers(
         }
     if binary:
         safe_path = _safe_checkpoint(binary, root)
-        outputs["binary_authenticity_router"] = helper.classify_with_general_model(
-            list(frames), safe_path
+        outputs["binary_authenticity_router"] = _apply_router_policy(
+            helper.classify_with_general_model(list(frames), safe_path)
         )
     else:
         outputs["binary_authenticity_router"] = {
@@ -189,19 +227,47 @@ def build_analysis_outputs(
     binary_checkpoint: Optional[str] = None,
 ) -> dict[str, Any]:
     """Build all four stable report outputs."""
+    face_metrics = (report.get("branches", {}).get("face") or {}).get("metrics") or {}
     try:
-        router_outputs = run_optional_routers(
-            frames,
-            snapshot_root=snapshot_root,
-            specialist_checkpoint=specialist_checkpoint,
-            binary_checkpoint=binary_checkpoint,
-        )
-    except (FileNotFoundError, ImportError, RuntimeError, ValueError) as exc:
-        error = {"status": "error", "enabled": False, "error": str(exc)}
-        router_outputs = {
-            "specialist_three_class_router": dict(error),
-            "binary_authenticity_router": dict(error),
+        face_detection_frames = int(face_metrics.get("detection_frames", 0))
+    except (TypeError, ValueError):
+        face_detection_frames = 0
+    configured_root = snapshot_root or os.getenv("NEUROFORGE_PRODUCTION_SNAPSHOT_ROOT", "")
+    if configured_root and face_detection_frames <= 0:
+        no_face_router = {
+            "status": "abstain",
+            "enabled": True,
+            "label": "unknown",
+            "confidence": None,
+            "margin": None,
+            "abstention_reason": (
+                "No reliable face detections were found in the sampled video; "
+                "face-dependent routers are not applicable."
+            ),
+            "router_policy": {
+                "minimum_confidence": ROUTER_MIN_CONFIDENCE,
+                "minimum_margin": ROUTER_MIN_MARGIN,
+                "face_evidence_required": True,
+            },
         }
+        router_outputs = {
+            "specialist_three_class_router": dict(no_face_router),
+            "binary_authenticity_router": dict(no_face_router),
+        }
+    else:
+        try:
+            router_outputs = run_optional_routers(
+                frames,
+                snapshot_root=snapshot_root,
+                specialist_checkpoint=specialist_checkpoint,
+                binary_checkpoint=binary_checkpoint,
+            )
+        except (FileNotFoundError, ImportError, RuntimeError, ValueError) as exc:
+            error = {"status": "error", "enabled": False, "error": str(exc)}
+            router_outputs = {
+                "specialist_three_class_router": dict(error),
+                "binary_authenticity_router": dict(error),
+            }
     return {
         "deterministic_engine": {
             "status": "available",
@@ -216,5 +282,86 @@ def build_analysis_outputs(
         "binary_authenticity_router": router_outputs[
             "binary_authenticity_router"
         ],
+        "directional_analysis": classify_report(
+            report, evidence_set="directional", allow_provisional=False
+        ),
         "production_five_layer": build_five_layer_output(report),
     }
+
+
+def reconcile_analysis_outputs(outputs: Mapping[str, Any]) -> dict[str, Any]:
+    """Describe agreement between independent outputs without overriding them."""
+    deterministic = outputs.get("deterministic_engine") or {}
+    fusion = deterministic.get("fusion") or {}
+    score = _finite_score(fusion.get("score"))
+    fusion_label = str(fusion.get("label") or "")
+    deterministic_signal = (
+        "synthetic" if fusion_label == "high-anomaly-signal" or (score is not None and score >= 0.62)
+        else "original" if fusion_label == "low-anomaly-signal" or (score is not None and score < 0.30)
+        else "uncertain"
+    )
+    sources: dict[str, str] = {"deterministic_engine": deterministic_signal}
+    specialist = outputs.get("specialist_three_class_router") or {}
+    if specialist.get("status") == "classified":
+        label = str(specialist.get("label") or "")
+        sources["specialist_three_class_router"] = (
+            "synthetic" if label in {"ai_generated", "face_deepfake"} else
+            "uncertain"
+        )
+    binary = outputs.get("binary_authenticity_router") or {}
+    if binary.get("status") == "classified":
+        label = str(binary.get("label") or "")
+        sources["binary_authenticity_router"] = (
+            "synthetic" if label == "synthetic" else
+            "original" if label == "original" else "uncertain"
+        )
+    signals = {signal for signal in sources.values() if signal != "uncertain"}
+    conflicts = [
+        name for name, signal in sources.items()
+        if signal != "uncertain" and len(signals) > 1
+    ]
+    if len(signals) == 1 and not conflicts and deterministic_signal != "uncertain":
+        consensus = next(iter(signals))
+        status = "agreed"
+    elif conflicts:
+        consensus = "review"
+        status = "conflict"
+    else:
+        consensus = "review"
+        status = "inconclusive"
+    decision = consensus if status == "agreed" else "review"
+    decision_reason = (
+        "All classified outputs support the same direction."
+        if status == "agreed"
+        else "Conflicting or insufficiently informative outputs require human review."
+    )
+    return {
+        "status": status,
+        "consensus": consensus,
+        "decision": decision,
+        "decision_reason": decision_reason,
+        "sources": sources,
+        "conflicting_sources": conflicts,
+        "policy": (
+            "Deterministic fusion remains authoritative; router disagreement is "
+            "reported as review and never silently resolved."
+        ),
+    }
+
+
+def apply_reconciliation_to_fusion(
+    fusion: dict[str, Any],
+    reconciliation: Mapping[str, Any],
+) -> None:
+    """Attach a backend decision without changing the numerical evidence score."""
+    fusion["decision"] = reconciliation.get("decision", "review")
+    fusion["decision_status"] = reconciliation.get("status", "inconclusive")
+    fusion["decision_reason"] = reconciliation.get(
+        "decision_reason",
+        "Insufficient cross-system agreement for a unified decision.",
+    )
+    if reconciliation.get("status") == "conflict":
+        reason_codes = list(fusion.get("reason_codes") or [])
+        if "cross-system-conflict" not in reason_codes:
+            reason_codes.append("cross-system-conflict")
+        fusion["reason_codes"] = sorted(set(reason_codes))

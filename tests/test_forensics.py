@@ -17,6 +17,12 @@ from forensic_video.analyzer import _apply_robustness_abstention, _localize
 from forensic_video.periodicity import _longest_run
 from forensic_video.stats import outlier_fraction
 from forensic_video.evaluation import classify_report, evaluate_reports
+from forensic_video.production import (
+    apply_reconciliation_to_fusion,
+    build_analysis_outputs,
+    reconcile_analysis_outputs,
+)
+from forensic_video.production import _apply_router_policy
 
 
 def test_synthetic_analysis_is_json_serializable(tmp_path):
@@ -32,13 +38,128 @@ def test_synthetic_analysis_is_json_serializable(tmp_path):
         "deterministic_engine",
         "specialist_three_class_router",
         "binary_authenticity_router",
+        "directional_analysis",
         "production_five_layer",
     }
     assert data["analysis_outputs"]["deterministic_engine"]["authoritative"] is True
     assert len(data["analysis_outputs"]["production_five_layer"]["layers"]) == 5
     assert data["analysis_outputs"]["specialist_three_class_router"]["status"] == "not_configured"
     assert data["analysis_outputs"]["binary_authenticity_router"]["status"] == "not_configured"
+    assert data["analysis_reconciliation"]["status"] == "inconclusive"
     json.dumps(data, allow_nan=False)
+
+
+def test_cross_system_reconciliation_surfaces_router_conflict():
+    outputs = {
+        "deterministic_engine": {
+            "fusion": {"score": 0.18, "label": "low-anomaly-signal"},
+        },
+        "specialist_three_class_router": {
+            "status": "classified", "label": "ai_generated",
+        },
+        "binary_authenticity_router": {
+            "status": "classified", "label": "synthetic",
+        },
+    }
+    result = reconcile_analysis_outputs(outputs)
+    assert result["status"] == "conflict"
+    assert result["consensus"] == "review"
+    assert "deterministic_engine" in result["conflicting_sources"]
+    assert "specialist_three_class_router" in result["conflicting_sources"]
+
+
+def test_cross_system_reconciliation_agrees_only_with_deterministic_support():
+    outputs = {
+        "deterministic_engine": {
+            "fusion": {"score": 0.80, "label": "high-anomaly-signal"},
+        },
+        "specialist_three_class_router": {
+            "status": "classified", "label": "ai_generated",
+        },
+        "binary_authenticity_router": {
+            "status": "abstain", "label": "unknown",
+        },
+    }
+    result = reconcile_analysis_outputs(outputs)
+    assert result["status"] == "agreed"
+    assert result["consensus"] == "synthetic"
+
+
+def test_content_class_router_does_not_claim_authenticity_agreement():
+    outputs = {
+        "deterministic_engine": {
+            "fusion": {"score": 0.18, "label": "low-anomaly-signal"},
+        },
+        "specialist_three_class_router": {
+            "status": "classified", "label": "biological_face",
+        },
+        "binary_authenticity_router": {
+            "status": "abstain", "label": "unknown",
+        },
+    }
+    result = reconcile_analysis_outputs(outputs)
+    assert result["status"] == "agreed"
+    assert result["consensus"] == "original"
+    assert result["sources"]["specialist_three_class_router"] == "uncertain"
+
+
+def test_conflict_becomes_review_decision_without_changing_score():
+    fusion = {
+        "score": 0.18,
+        "label": "low-anomaly-signal",
+        "reason_codes": [],
+    }
+    reconciliation = {
+        "status": "conflict",
+        "decision": "review",
+        "decision_reason": "Conflicting outputs.",
+    }
+    apply_reconciliation_to_fusion(fusion, reconciliation)
+    assert fusion["score"] == 0.18
+    assert fusion["label"] == "low-anomaly-signal"
+    assert fusion["decision"] == "review"
+    assert "cross-system-conflict" in fusion["reason_codes"]
+
+
+def test_router_policy_accepts_point_seven_confidence_with_margin():
+    result = _apply_router_policy({
+        "status": "abstain",
+        "label": "unknown",
+        "confidence": 0.74,
+        "margin": 0.0,
+        "probabilities": {
+            "original": 0.74,
+            "synthetic": 0.26,
+        },
+    })
+    assert result["status"] == "classified"
+    assert result["label"] == "original"
+    assert result["router_policy"]["minimum_confidence"] == 0.70
+
+
+def test_router_policy_retains_abstention_below_confidence():
+    result = _apply_router_policy({
+        "status": "abstain",
+        "label": "unknown",
+        "probabilities": {
+            "original": 0.69,
+            "synthetic": 0.31,
+        },
+    })
+    assert result["status"] == "abstain"
+    assert result["label"] == "unknown"
+
+
+def test_routers_abstain_when_video_has_no_face_evidence():
+    outputs = build_analysis_outputs(
+        {"branches": {"face": {"metrics": {"detection_frames": 0}}}},
+        frames=[np.zeros((8, 8, 3), dtype=np.uint8)],
+        snapshot_root="C:\\protected-snapshot",
+    )
+    for name in ("specialist_three_class_router", "binary_authenticity_router"):
+        assert outputs[name]["status"] == "abstain"
+        assert outputs[name]["label"] == "unknown"
+        assert "No reliable face detections" in outputs[name]["abstention_reason"]
 
 
 def test_forced_threshold_view_separates_from_conservative_abstention():

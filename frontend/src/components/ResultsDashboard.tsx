@@ -411,6 +411,7 @@ const AnalysisOutputsPanel = ({ outputs }: { outputs?: AnalysisOutputs }) => {
   if (!outputs) return null;
   const entries: Array<[string, AnalysisOutputs[keyof AnalysisOutputs]]> = [
     ["Deterministic engine", outputs.deterministic_engine],
+    ["Directional analysis", outputs.directional_analysis],
     ["Specialist three-class router", outputs.specialist_three_class_router],
     ["Binary authenticity router", outputs.binary_authenticity_router],
     ["Production five-layer structure", outputs.production_five_layer],
@@ -437,6 +438,11 @@ const AnalysisOutputsPanel = ({ outputs }: { outputs?: AnalysisOutputs }) => {
                 <span className="font-mono text-xs text-p300">confidence {output.confidence.toFixed(3)}</span>
               ) : null}
             </div>
+            {name === "Directional analysis" && (
+              <p className="mt-1 text-[10px] font-mono text-muted-foreground">
+                Diagnostic direction only; not a calibrated authenticity probability.
+              </p>
+            )}
             {typeof output.margin === "number" && (
               <p className="mt-1 text-[10px] font-mono text-muted-foreground">
                 decision margin {output.margin.toFixed(3)}
@@ -470,9 +476,29 @@ const AnalysisOutputsPanel = ({ outputs }: { outputs?: AnalysisOutputs }) => {
           </div>
         ))}
       </div>
+      <div className="mt-4 rounded-lg border border-theta/20 bg-muted/20 p-4">
+        <h3 className="font-display text-[10px] tracking-[0.25em] text-muted-foreground uppercase">
+          SCORE SUMMARY
+        </h3>
+        <div className="mt-3 grid gap-2 sm:grid-cols-3">
+          <ScoreSummary label="Deterministic anomaly" value={outputs.deterministic_engine.score} />
+          <ScoreSummary label="Directional evidence" value={outputs.directional_analysis.score} />
+          <ScoreSummary label="Binary router confidence" value={outputs.binary_authenticity_router.confidence} />
+        </div>
+      </div>
     </motion.div>
   );
 };
+
+const ScoreSummary = ({ label, value }: { label: string; value?: number | null }) => (
+  <div className="rounded border border-border/70 bg-background/40 p-3">
+    <p className="text-[10px] font-mono text-muted-foreground">{label}</p>
+    <p className="mt-1 font-display text-lg text-foreground">
+      {typeof value === "number" ? `${(value * 100).toFixed(1)}%` : "n/a"}
+    </p>
+    <p className="text-[9px] font-mono text-muted-foreground/70">score, not probability</p>
+  </div>
+);
 
 const DeterministicEvidencePanel = ({ result }: { result: AnalysisResult }) => {
   const branches = result.deterministicReport?.branches;
@@ -542,10 +568,41 @@ export const ResultsDashboard = ({ result, youtubeUrl, onReset }: ResultsDashboa
 
         <ProcessingStats meta={result.processingMeta} />
         <AnalysisOutputsPanel outputs={result.analysis_outputs} />
+        {result.analysis_reconciliation && (
+          <div className="mt-6 rounded-lg border border-border bg-background/60 p-4">
+            <div className="flex items-center justify-between gap-4">
+              <h2 className="font-display text-xs tracking-[0.3em] text-muted-foreground">
+                CROSS-SYSTEM RECONCILIATION
+              </h2>
+              <span className="font-mono text-xs uppercase text-p300">
+                {result.analysis_reconciliation.status}: {result.analysis_reconciliation.consensus}
+              </span>
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">
+              {result.analysis_reconciliation.policy}
+            </p>
+            {result.analysis_reconciliation.conflicting_sources.length > 0 && (
+              <p className="mt-2 text-xs text-shred">
+                Conflicting signals: {result.analysis_reconciliation.conflicting_sources.join(", ")}.
+                Treat this analysis as requiring review; no router output overrides deterministic fusion.
+              </p>
+            )}
+          </div>
+        )}
         <DeterministicEvidencePanel result={result} />
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="text-center mb-6">
-          <p className="text-sm text-muted-foreground font-mono max-w-md mx-auto break-all">{youtubeUrl}</p>
+          <div className="mx-auto max-w-md">
+            <p className="text-[10px] font-display tracking-[0.25em] text-muted-foreground uppercase">ANALYZED VIDEO</p>
+            <a
+              href={youtubeUrl || result.videoUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-1 block break-all text-sm font-mono text-p300 underline decoration-p300/40 underline-offset-4 hover:text-foreground"
+            >
+              {youtubeUrl || result.videoUrl}
+            </a>
+          </div>
           <p className="text-[10px] text-muted-foreground/30 font-mono mt-1">Trace: {result.traceId} • {new Date(result.timestamp).toLocaleString()}</p>
         </motion.div>
 
@@ -581,7 +638,10 @@ export const ResultsDashboard = ({ result, youtubeUrl, onReset }: ResultsDashboa
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="text-center mt-10 pb-8">
           <p className="text-xs text-muted-foreground/40 font-mono">{result.modelVersion} • {result.calibrationSource}</p>
-          <p className="text-xs text-muted-foreground/30 font-mono mt-1">Results are probabilistic — no system can guarantee 100% certainty.</p>
+          <p className="text-xs text-muted-foreground/30 font-mono mt-1">
+            This system is not perfect. Scores are deterministic evidence signals, not guarantees of authenticity.
+            Compression, editing, unusual content, and source quality can produce false positives or false negatives.
+          </p>
         </motion.div>
       </div>
     </div>

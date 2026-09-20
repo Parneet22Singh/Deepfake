@@ -55,6 +55,7 @@ class AnalysisResult:
     stability: Dict[str, Any] = field(default_factory=dict)
     transcode_stability: Dict[str, Any] = field(default_factory=dict)
     analysis_outputs: Dict[str, Any] = field(default_factory=dict)
+    analysis_reconciliation: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
