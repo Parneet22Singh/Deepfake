@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "forensic-video"
+version = "0.1.0"
+description = "Deterministic, classical-computer-vision video forensics with a JSON CLI"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Forensic Video Contributors"}]
+dependencies = ["numpy>=1.21"]
+
+[project.optional-dependencies]
+video = ["opencv-python-headless>=4.7"]
+audio = ["soundfile>=0.12"]
+api = ["fastapi>=0.110", "uvicorn>=0.29", "python-multipart>=0.0.9"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+forensic-video = "forensic_video.cli:main"
+forensic-video-evaluate = "forensic_video.evaluation:main"
+
+[tool.setuptools.packages.find]
+include = ["forensic_video*"]

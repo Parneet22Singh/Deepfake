@@ -1,0 +1,44 @@
+[
+  {
+    "name": "openai_sora",
+    "truth": "synthetic",
+    "directional_label": "synthetic",
+    "directional_score": 0.707376287779943,
+    "directional_predicted": "positive"
+  },
+  {
+    "name": "meta_movie_gen",
+    "truth": "synthetic",
+    "directional_label": "synthetic",
+    "directional_score": 0.7533729371880646,
+    "directional_predicted": "positive"
+  },
+  {
+    "name": "google_veo3",
+    "truth": "synthetic",
+    "directional_label": "synthetic",
+    "directional_score": 0.9290703837933179,
+    "directional_predicted": "positive"
+  },
+  {
+    "name": "nasa_apollo_landing",
+    "truth": "original",
+    "directional_label": "synthetic",
+    "directional_score": 0.9349290918304214,
+    "directional_predicted": "positive"
+  },
+  {
+    "name": "noaa_titanic",
+    "truth": "original",
+    "directional_label": "original",
+    "directional_score": 0.0,
+    "directional_predicted": "negative"
+  },
+  {
+    "name": "bbc_queen_broadcast",
+    "truth": "original",
+    "directional_label": "original",
+    "directional_score": 0.0,
+    "directional_predicted": "negative"
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "name": "openai_sora",
+    "truth": "synthetic",
+    "report": "C:\\Temp\\neuroforge_unused6_2026-09-15\\openai_sora.production.json",
+    "ordinary_label": "mixed-anomaly-signal",
+    "ordinary_score": 0.529352,
+    "router_statuses": {
+      "specialist_three_class_router": "classified",
+      "binary_authenticity_router": "abstain"
+    },
+    "router_labels": {
+      "specialist_three_class_router": "ai_generated",
+      "binary_authenticity_router": "unknown"
+    },
+    "five_layer_count": 5
+  },
+  {
+    "name": "meta_movie_gen",
+    "truth": "synthetic",
+    "report": "C:\\Temp\\neuroforge_unused6_2026-09-15\\meta_movie_gen.production.json",
+    "ordinary_label": "high-anomaly-signal",
+    "ordinary_score": 0.67233,
+    "router_statuses": {
+      "specialist_three_class_router": "abstain",
+      "binary_authenticity_router": "classified"
+    },
+    "router_labels": {
+      "specialist_three_class_router": "unknown",
+      "binary_authenticity_router": "synthetic"
+    },
+    "five_layer_count": 5
+  },
+  {
+    "name": "google_veo3",
+    "truth": "synthetic",
+    "report": "C:\\Temp\\neuroforge_unused6_2026-09-15\\google_veo3.production.json",
+    "ordinary_label": "mixed-anomaly-signal",
+    "ordinary_score": 0.583045,
+    "router_statuses": {
+      "specialist_three_class_router": "abstain",
+      "binary_authenticity_router": "classified"
+    },
+    "router_labels": {
+      "specialist_three_class_router": "unknown",
+      "binary_authenticity_router": "synthetic"
+    },
+    "five_layer_count": 5
+  },
+  {
+    "name": "nasa_apollo_landing",
+    "truth": "original",
+    "report": "C:\\Temp\\neuroforge_unused6_2026-09-15\\nasa_apollo_landing.production.json",
+    "ordinary_label": "high-anomaly-signal",
+    "ordinary_score": 0.676962,
+    "router_statuses": {
+      "specialist_three_class_router": "classified",
+      "binary_authenticity_router": "abstain"
+    },
+    "router_labels": {
+      "specialist_three_class_router": "biological_face",
+      "binary_authenticity_router": "unknown"
+    },
+    "five_layer_count": 5
+  },
+  {
+    "name": "noaa_titanic",
+    "truth": "original",
+    "report": "C:\\Temp\\neuroforge_unused6_2026-09-15\\noaa_titanic.production.json",
+    "ordinary_label": "mixed-anomaly-signal",
+    "ordinary_score": 0.587365,
+    "router_statuses": {
+      "specialist_three_class_router": "abstain",
+      "binary_authenticity_router": "abstain"
+    },
+    "router_labels": {
+      "specialist_three_class_router": "unknown",
+      "binary_authenticity_router": "unknown"
+    },
+    "five_layer_count": 5
+  },
+  {
+    "name": "bbc_queen_broadcast",
+    "truth": "original",
+    "report": "C:\\Temp\\neuroforge_unused6_2026-09-15\\bbc_queen_broadcast.production.json",
+    "ordinary_label": "mixed-anomaly-signal",
+    "ordinary_score": 0.477089,
+    "router_statuses": {
+      "specialist_three_class_router": "classified",
+      "binary_authenticity_router": "abstain"
+    },
+    "router_labels": {
+      "specialist_three_class_router": "biological_face",
+      "binary_authenticity_router": "unknown"
+    },
+    "five_layer_count": 5
+  }
+]

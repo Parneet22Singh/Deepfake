@@ -1,0 +1,56 @@
+[
+  {
+    "name": "ai_oPFW3rnZ6cM",
+    "truth": "synthetic",
+    "status": "ok",
+    "report": "C:\\Temp\\neuroforge_labeled_2026-09-15\\ai_oPFW3rnZ6cM.json",
+    "ordinary_label": "mixed-anomaly-signal",
+    "ordinary_score": 0.570866
+  },
+  {
+    "name": "ai_DbXBJzG8Hpo",
+    "truth": "synthetic",
+    "status": "ok",
+    "report": "C:\\Temp\\neuroforge_labeled_2026-09-15\\ai_DbXBJzG8Hpo.json",
+    "ordinary_label": "mixed-anomaly-signal",
+    "ordinary_score": 0.606758
+  },
+  {
+    "name": "original_YpjwHazhknA",
+    "truth": "original",
+    "status": "ok",
+    "report": "C:\\Temp\\neuroforge_labeled_2026-09-15\\original_YpjwHazhknA.json",
+    "ordinary_label": "high-anomaly-signal",
+    "ordinary_score": 0.636406
+  },
+  {
+    "name": "original_SfehNsOJcH0",
+    "truth": "original",
+    "status": "ok",
+    "report": "C:\\Temp\\neuroforge_labeled_2026-09-15\\original_SfehNsOJcH0.json",
+    "ordinary_label": "mixed-anomaly-signal",
+    "ordinary_score": 0.589106
+  },
+  {
+    "name": "deepfake_cQ54GDm1eL0",
+    "truth": "synthetic",
+    "status": "ok",
+    "report": "C:\\Temp\\neuroforge_labeled_2026-09-15\\deepfake_cQ54GDm1eL0.json",
+    "ordinary_label": "mixed-anomaly-signal",
+    "ordinary_score": 0.406833
+  },
+  {
+    "name": "ai_hglgpZqgC3U",
+    "truth": "synthetic",
+    "status": "download_error",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] hglgpZqgC3U: This video is not available\n"
+  },
+  {
+    "name": "original_1KzHEPNmjU8",
+    "truth": "original",
+    "status": "ok",
+    "report": "C:\\Temp\\neuroforge_labeled_2026-09-15\\original_1KzHEPNmjU8.json",
+    "ordinary_label": "mixed-anomaly-signal",
+    "ordinary_score": 0.502487
+  }
+]

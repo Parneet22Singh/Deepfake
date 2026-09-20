@@ -1,0 +1,1089 @@
+{
+  "schema_version": "evaluation-4",
+  "analysis_mode": "standard",
+  "evidence_set": "directional",
+  "calibration": "none",
+  "mode_note": "standard analysis-only evaluation; not calibrated",
+  "thresholds": {
+    "positive": 0.45,
+    "negative": 0.3,
+    "use": "analysis-only; not production calibration"
+  },
+  "forced_threshold": null,
+  "items": {
+    "new_ai_generated": {
+      "truth": "positive",
+      "score": 0.0,
+      "predicted": "negative",
+      "directional_label": "original",
+      "decision_kind": "directional-threshold",
+      "analysis_mode": "directional-analysis",
+      "evidence": [
+        "face-or-integrity-synthetic-support"
+      ],
+      "abstain_reasons": [],
+      "exploratory": {},
+      "exploratory_ranking": null,
+      "fusion_label": "directional-synthetic-evidence",
+      "stability": {
+        "status": null,
+        "score_range": null
+      },
+      "transcode": {
+        "status": "not-requested",
+        "score_delta": null
+      },
+      "forced_threshold": null,
+      "forced_threshold_sets": {}
+    },
+    "new_deepfake": {
+      "truth": "positive",
+      "score": 0.5065360779277213,
+      "predicted": "positive",
+      "directional_label": "synthetic",
+      "decision_kind": "directional-threshold",
+      "analysis_mode": "directional-analysis",
+      "evidence": [
+        "face-or-integrity-synthetic-support"
+      ],
+      "abstain_reasons": [],
+      "exploratory": {},
+      "exploratory_ranking": null,
+      "fusion_label": "directional-synthetic-evidence",
+      "stability": {
+        "status": null,
+        "score_range": null
+      },
+      "transcode": {
+        "status": "not-requested",
+        "score_delta": null
+      },
+      "forced_threshold": null,
+      "forced_threshold_sets": {}
+    },
+    "new_real": {
+      "truth": "negative",
+      "score": 0.0,
+      "predicted": "negative",
+      "directional_label": "original",
+      "decision_kind": "directional-threshold",
+      "analysis_mode": "directional-analysis",
+      "evidence": [
+        "face-or-integrity-synthetic-support"
+      ],
+      "abstain_reasons": [],
+      "exploratory": {},
+      "exploratory_ranking": null,
+      "fusion_label": "directional-synthetic-evidence",
+      "stability": {
+        "status": null,
+        "score_range": null
+      },
+      "transcode": {
+        "status": "not-requested",
+        "score_delta": null
+      },
+      "forced_threshold": null,
+      "forced_threshold_sets": {}
+    },
+    "normal_video_7Dry": {
+      "truth": "negative",
+      "score": 0.0,
+      "predicted": "negative",
+      "directional_label": "original",
+      "decision_kind": "directional-threshold",
+      "analysis_mode": "directional-analysis",
+      "evidence": [
+        "face-or-integrity-synthetic-support"
+      ],
+      "abstain_reasons": [],
+      "exploratory": {},
+      "exploratory_ranking": null,
+      "fusion_label": "directional-synthetic-evidence",
+      "stability": {
+        "status": null,
+        "score_range": null
+      },
+      "transcode": {
+        "status": "not-requested",
+        "score_delta": null
+      },
+      "forced_threshold": null,
+      "forced_threshold_sets": {}
+    },
+    "original_deepfake": {
+      "truth": "positive",
+      "score": 1.0,
+      "predicted": "positive",
+      "directional_label": "synthetic",
+      "decision_kind": "directional-threshold",
+      "analysis_mode": "directional-analysis",
+      "evidence": [
+        "face-or-integrity-synthetic-support"
+      ],
+      "abstain_reasons": [],
+      "exploratory": {},
+      "exploratory_ranking": null,
+      "fusion_label": "directional-synthetic-evidence",
+      "stability": {
+        "status": null,
+        "score_range": null
+      },
+      "transcode": {
+        "status": "not-requested",
+        "score_delta": null
+      },
+      "forced_threshold": null,
+      "forced_threshold_sets": {}
+    },
+    "original_real": {
+      "truth": "negative",
+      "score": 0.0,
+      "predicted": "negative",
+      "directional_label": "original",
+      "decision_kind": "directional-threshold",
+      "analysis_mode": "directional-analysis",
+      "evidence": [
+        "face-or-integrity-synthetic-support"
+      ],
+      "abstain_reasons": [],
+      "exploratory": {},
+      "exploratory_ranking": null,
+      "fusion_label": "directional-synthetic-evidence",
+      "stability": {
+        "status": null,
+        "score_range": null
+      },
+      "transcode": {
+        "status": "not-requested",
+        "score_delta": null
+      },
+      "forced_threshold": null,
+      "forced_threshold_sets": {}
+    }
+  },
+  "ranking": {
+    "positive_scores": [
+      0.0,
+      0.5065360779277213,
+      1.0
+    ],
+    "negative_scores": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "positive_median": 0.506536,
+    "negative_median": 0.0,
+    "median_gap_positive_minus_negative": 0.506536,
+    "labeled_scored_count": 6,
+    "positive_count": 3,
+    "negative_count": 3,
+    "pair_count": 9,
+    "concordant_pairs": 6,
+    "tied_pairs": 3,
+    "discordant_pairs": 0,
+    "auroc_like": 0.833333,
+    "average_precision_like": 1.0,
+    "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here"
+  },
+  "exploratory_ranking": {
+    "items": [],
+    "coverage": {
+      "ranked_report_count": 0,
+      "report_count": 6,
+      "fraction": 0.0
+    },
+    "note": "exploratory ranking disabled"
+  },
+  "branch_diagnostics": {
+    "audio": {
+      "labeled_scored_count": 0,
+      "positive_count": 0,
+      "negative_count": 0,
+      "pair_count": 0,
+      "concordant_pairs": 0,
+      "tied_pairs": 0,
+      "discordant_pairs": 0,
+      "auroc_like": null,
+      "average_precision_like": null,
+      "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here",
+      "labeled_count": 6,
+      "positive_scores": [],
+      "negative_scores": [],
+      "missing_or_invalid_count": 6,
+      "positive_median": null,
+      "negative_median": null,
+      "median_gap_positive_minus_negative": null
+    },
+    "avsync": {
+      "labeled_scored_count": 0,
+      "positive_count": 0,
+      "negative_count": 0,
+      "pair_count": 0,
+      "concordant_pairs": 0,
+      "tied_pairs": 0,
+      "discordant_pairs": 0,
+      "auroc_like": null,
+      "average_precision_like": null,
+      "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here",
+      "labeled_count": 6,
+      "positive_scores": [],
+      "negative_scores": [],
+      "missing_or_invalid_count": 6,
+      "positive_median": null,
+      "negative_median": null,
+      "median_gap_positive_minus_negative": null
+    },
+    "codec": {
+      "labeled_scored_count": 6,
+      "positive_count": 3,
+      "negative_count": 3,
+      "pair_count": 9,
+      "concordant_pairs": 2,
+      "tied_pairs": 0,
+      "discordant_pairs": 7,
+      "auroc_like": 0.222222,
+      "average_precision_like": 0.466667,
+      "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here",
+      "labeled_count": 6,
+      "positive_scores": [
+        0.6275862068966795,
+        0.31773049645402845,
+        0.0
+      ],
+      "negative_scores": [
+        0.32684824902736515,
+        0.40000000000012786,
+        0.7000000000000266
+      ],
+      "missing_or_invalid_count": 0,
+      "positive_median": 0.31773,
+      "negative_median": 0.4,
+      "median_gap_positive_minus_negative": -0.08227
+    },
+    "face": {
+      "labeled_scored_count": 2,
+      "positive_count": 2,
+      "negative_count": 0,
+      "pair_count": 0,
+      "concordant_pairs": 0,
+      "tied_pairs": 0,
+      "discordant_pairs": 0,
+      "auroc_like": null,
+      "average_precision_like": 1.0,
+      "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here",
+      "labeled_count": 6,
+      "positive_scores": [
+        0.9383978017510277,
+        1.0
+      ],
+      "negative_scores": [],
+      "missing_or_invalid_count": 4,
+      "positive_median": 0.969199,
+      "negative_median": null,
+      "median_gap_positive_minus_negative": null
+    },
+    "frequency": {
+      "labeled_scored_count": 6,
+      "positive_count": 3,
+      "negative_count": 3,
+      "pair_count": 9,
+      "concordant_pairs": 4,
+      "tied_pairs": 0,
+      "discordant_pairs": 5,
+      "auroc_like": 0.444444,
+      "average_precision_like": 0.666667,
+      "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here",
+      "labeled_count": 6,
+      "positive_scores": [
+        0.37008940400726487,
+        0.2635185406647227,
+        0.1400639476839905
+      ],
+      "negative_scores": [
+        0.31718203974419446,
+        0.17840574486255173,
+        0.27400304828652566
+      ],
+      "missing_or_invalid_count": 0,
+      "positive_median": 0.263519,
+      "negative_median": 0.274003,
+      "median_gap_positive_minus_negative": -0.010484
+    },
+    "integrity": {
+      "labeled_scored_count": 6,
+      "positive_count": 3,
+      "negative_count": 3,
+      "pair_count": 9,
+      "concordant_pairs": 7,
+      "tied_pairs": 0,
+      "discordant_pairs": 2,
+      "auroc_like": 0.777778,
+      "average_precision_like": 0.805556,
+      "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here",
+      "labeled_count": 6,
+      "positive_scores": [
+        0.1975407959620158,
+        0.5065360779277213,
+        0.0768336435253626
+      ],
+      "negative_scores": [
+        0.06251598398342079,
+        0.042151617011808924,
+        0.24487913370075595
+      ],
+      "missing_or_invalid_count": 0,
+      "positive_median": 0.197541,
+      "negative_median": 0.062516,
+      "median_gap_positive_minus_negative": 0.135025
+    },
+    "periodicity": {
+      "labeled_scored_count": 0,
+      "positive_count": 0,
+      "negative_count": 0,
+      "pair_count": 0,
+      "concordant_pairs": 0,
+      "tied_pairs": 0,
+      "discordant_pairs": 0,
+      "auroc_like": null,
+      "average_precision_like": null,
+      "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here",
+      "labeled_count": 6,
+      "positive_scores": [],
+      "negative_scores": [],
+      "missing_or_invalid_count": 6,
+      "positive_median": null,
+      "negative_median": null,
+      "median_gap_positive_minus_negative": null
+    },
+    "recompression": {
+      "labeled_scored_count": 6,
+      "positive_count": 3,
+      "negative_count": 3,
+      "pair_count": 9,
+      "concordant_pairs": 2,
+      "tied_pairs": 0,
+      "discordant_pairs": 7,
+      "auroc_like": 0.222222,
+      "average_precision_like": 0.466667,
+      "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here",
+      "labeled_count": 6,
+      "positive_scores": [
+        0.1325056499407503,
+        0.07853345581619199,
+        0.047503955093234955
+      ],
+      "negative_scores": [
+        0.13047814735563046,
+        0.09483918183793526,
+        0.16187115540068228
+      ],
+      "missing_or_invalid_count": 0,
+      "positive_median": 0.078533,
+      "negative_median": 0.130478,
+      "median_gap_positive_minus_negative": -0.051945
+    },
+    "resampling": {
+      "labeled_scored_count": 0,
+      "positive_count": 0,
+      "negative_count": 0,
+      "pair_count": 0,
+      "concordant_pairs": 0,
+      "tied_pairs": 0,
+      "discordant_pairs": 0,
+      "auroc_like": null,
+      "average_precision_like": null,
+      "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here",
+      "labeled_count": 6,
+      "positive_scores": [],
+      "negative_scores": [],
+      "missing_or_invalid_count": 6,
+      "positive_median": null,
+      "negative_median": null,
+      "median_gap_positive_minus_negative": null
+    },
+    "scene": {
+      "labeled_scored_count": 0,
+      "positive_count": 0,
+      "negative_count": 0,
+      "pair_count": 0,
+      "concordant_pairs": 0,
+      "tied_pairs": 0,
+      "discordant_pairs": 0,
+      "auroc_like": null,
+      "average_precision_like": null,
+      "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here",
+      "labeled_count": 6,
+      "positive_scores": [],
+      "negative_scores": [],
+      "missing_or_invalid_count": 6,
+      "positive_median": null,
+      "negative_median": null,
+      "median_gap_positive_minus_negative": null
+    },
+    "spatial": {
+      "labeled_scored_count": 1,
+      "positive_count": 0,
+      "negative_count": 1,
+      "pair_count": 0,
+      "concordant_pairs": 0,
+      "tied_pairs": 0,
+      "discordant_pairs": 0,
+      "auroc_like": null,
+      "average_precision_like": null,
+      "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here",
+      "labeled_count": 6,
+      "positive_scores": [],
+      "negative_scores": [
+        0.2934892516936847
+      ],
+      "missing_or_invalid_count": 5,
+      "positive_median": null,
+      "negative_median": 0.293489,
+      "median_gap_positive_minus_negative": null
+    },
+    "temporal": {
+      "labeled_scored_count": 6,
+      "positive_count": 3,
+      "negative_count": 3,
+      "pair_count": 9,
+      "concordant_pairs": 4,
+      "tied_pairs": 1,
+      "discordant_pairs": 4,
+      "auroc_like": 0.5,
+      "average_precision_like": 0.588889,
+      "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here",
+      "labeled_count": 6,
+      "positive_scores": [
+        0.06479114045582768,
+        0.0,
+        0.044871794871794865
+      ],
+      "negative_scores": [
+        0.04301045221308704,
+        0.125,
+        0.0
+      ],
+      "missing_or_invalid_count": 0,
+      "positive_median": 0.044872,
+      "negative_median": 0.04301,
+      "median_gap_positive_minus_negative": 0.001862
+    },
+    "wavelet": {
+      "labeled_scored_count": 1,
+      "positive_count": 0,
+      "negative_count": 1,
+      "pair_count": 0,
+      "concordant_pairs": 0,
+      "tied_pairs": 0,
+      "discordant_pairs": 0,
+      "auroc_like": null,
+      "average_precision_like": null,
+      "note": "analysis-only rank metrics; scores are anomaly rankings, not probabilities, and robustness failures are not removed here",
+      "labeled_count": 6,
+      "positive_scores": [],
+      "negative_scores": [
+        0.6187652854088138
+      ],
+      "missing_or_invalid_count": 5,
+      "positive_median": null,
+      "negative_median": 0.618765,
+      "median_gap_positive_minus_negative": null
+    }
+  },
+  "operating_points": [
+    {
+      "positive_threshold": 0.35,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.4,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.45,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.5,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.506536,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.55,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.6,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.65,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.7,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.75,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.8,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.85,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.9,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.95,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 1.0,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    }
+  ],
+  "consensus_operating_points": [
+    {
+      "positive_threshold": 0.35,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.4,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.45,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.5,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.506536,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.55,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.6,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.65,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.7,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.75,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.8,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.85,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.9,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 0.95,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    },
+    {
+      "positive_threshold": 1.0,
+      "negative_threshold": 0.3,
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0,
+        "abstain": 6
+      },
+      "coverage": 0.0,
+      "abstention_rate": 1.0,
+      "sensitivity": null,
+      "specificity": null,
+      "false_positive_rate": null,
+      "precision": null,
+      "conditional_accuracy": null,
+      "balanced_accuracy": null
+    }
+  ],
+  "metrics": {
+    "labeled_count": 6,
+    "unlabeled_count": 0,
+    "confusion_matrix": {
+      "true_positive": 2,
+      "false_positive": 0,
+      "true_negative": 3,
+      "false_negative": 1,
+      "abstain": 0
+    },
+    "coverage": 1.0,
+    "abstention_rate": 0.0,
+    "provisional_positive_count": 0,
+    "conditional_accuracy": 0.833333,
+    "sensitivity": 0.666667,
+    "specificity": 1.0,
+    "balanced_accuracy": 0.833333,
+    "forced_threshold": null
+  },
+  "interpretation": "Scores rank anomaly evidence; predicted classes are an analysis view with fixed thresholds. Abstentions are not errors in the conditional accuracy, and unlabeled items are excluded from confusion metrics."
+}

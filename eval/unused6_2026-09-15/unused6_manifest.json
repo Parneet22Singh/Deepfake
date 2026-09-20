@@ -1,0 +1,136 @@
+{
+  "created": "2026-09-15",
+  "sample_seconds": 30,
+  "samples": 48,
+  "max_frames_per_branch": 32,
+  "items": [
+    {
+      "name": "openai_sora",
+      "url": "https://www.youtube.com/watch?v=HK6y8DAPN_0",
+      "truth": "synthetic",
+      "video": "C:\\Temp\\neuroforge_unused6_2026-09-15\\openai_sora.mp4",
+      "sha256": "e86384aa4a7036f895a05cc66b0df4445c200211874e3db61b72207dff42d673",
+      "bytes": 9613305,
+      "ordinary_label": "mixed-anomaly-signal",
+      "ordinary_score": 0.529352,
+      "directional_label": "synthetic",
+      "directional_score": 0.707376287779943,
+      "directional_predicted": "positive",
+      "analysis_outputs": {
+        "deterministic_engine": "available",
+        "specialist_three_class_router": "not_configured",
+        "binary_authenticity_router": "not_configured",
+        "production_five_layer": "available"
+      },
+      "five_layer_count": 5,
+      "branch_count": 13
+    },
+    {
+      "name": "meta_movie_gen",
+      "url": "https://www.youtube.com/watch?v=FHSSx4dUs7E",
+      "truth": "synthetic",
+      "video": "C:\\Temp\\neuroforge_unused6_2026-09-15\\meta_movie_gen.mp4",
+      "sha256": "9699315732d295f518663d4a5066eb5dbc96b6e98b6acab8c2c22a68b731d0cc",
+      "bytes": 14808067,
+      "ordinary_label": "high-anomaly-signal",
+      "ordinary_score": 0.67233,
+      "directional_label": "synthetic",
+      "directional_score": 0.7533729371880646,
+      "directional_predicted": "positive",
+      "analysis_outputs": {
+        "deterministic_engine": "available",
+        "specialist_three_class_router": "not_configured",
+        "binary_authenticity_router": "not_configured",
+        "production_five_layer": "available"
+      },
+      "five_layer_count": 5,
+      "branch_count": 13
+    },
+    {
+      "name": "google_veo3",
+      "url": "https://www.youtube.com/watch?v=WeIzH2jFsNw",
+      "truth": "synthetic",
+      "video": "C:\\Temp\\neuroforge_unused6_2026-09-15\\google_veo3.mp4",
+      "sha256": "dd12673518b12ec23f8a08ed494593e7c488d31a64f7ef09d961d9d3fe9a95ff",
+      "bytes": 5081321,
+      "ordinary_label": "mixed-anomaly-signal",
+      "ordinary_score": 0.583045,
+      "directional_label": "synthetic",
+      "directional_score": 0.9290703837933179,
+      "directional_predicted": "positive",
+      "analysis_outputs": {
+        "deterministic_engine": "available",
+        "specialist_three_class_router": "not_configured",
+        "binary_authenticity_router": "not_configured",
+        "production_five_layer": "available"
+      },
+      "five_layer_count": 5,
+      "branch_count": 13
+    },
+    {
+      "name": "nasa_apollo_landing",
+      "url": "https://www.youtube.com/watch?v=nOcDftgR5UQ",
+      "truth": "original",
+      "video": "C:\\Temp\\neuroforge_unused6_2026-09-15\\nasa_apollo_landing.mp4",
+      "sha256": "f110949efbcaa91161f8bd772dc245b4fbae4f0a468f454aae2ac1460d682747",
+      "bytes": 2901433,
+      "ordinary_label": "high-anomaly-signal",
+      "ordinary_score": 0.676962,
+      "directional_label": "synthetic",
+      "directional_score": 0.9349290918304214,
+      "directional_predicted": "positive",
+      "analysis_outputs": {
+        "deterministic_engine": "available",
+        "specialist_three_class_router": "not_configured",
+        "binary_authenticity_router": "not_configured",
+        "production_five_layer": "available"
+      },
+      "five_layer_count": 5,
+      "branch_count": 13
+    },
+    {
+      "name": "noaa_titanic",
+      "url": "https://www.youtube.com/watch?v=6Z7REEnwKOQ",
+      "truth": "original",
+      "video": "C:\\Temp\\neuroforge_unused6_2026-09-15\\noaa_titanic.mp4",
+      "sha256": "3ac041b8acdde7a6b11f606599d60b5509b2227221d6498bfc9dbe93d19e0bcc",
+      "bytes": 1476281,
+      "ordinary_label": "mixed-anomaly-signal",
+      "ordinary_score": 0.587365,
+      "directional_label": "original",
+      "directional_score": 0.0,
+      "directional_predicted": "negative",
+      "analysis_outputs": {
+        "deterministic_engine": "available",
+        "specialist_three_class_router": "not_configured",
+        "binary_authenticity_router": "not_configured",
+        "production_five_layer": "available"
+      },
+      "five_layer_count": 5,
+      "branch_count": 13
+    },
+    {
+      "name": "bbc_queen_broadcast",
+      "url": "https://www.youtube.com/watch?v=KgvZnxNAThM",
+      "truth": "original",
+      "video": "C:\\Temp\\neuroforge_unused6_2026-09-15\\bbc_queen_broadcast.mp4",
+      "sha256": "89b9ab2d9a7ce2df28090d999862ccb7870ce4ba197e2aa1c9784a1696aed4ce",
+      "bytes": 76069596,
+      "ordinary_label": "mixed-anomaly-signal",
+      "ordinary_score": 0.477089,
+      "directional_label": "original",
+      "directional_score": 0.0,
+      "directional_predicted": "negative",
+      "analysis_outputs": {
+        "deterministic_engine": "available",
+        "specialist_three_class_router": "not_configured",
+        "binary_authenticity_router": "not_configured",
+        "production_five_layer": "available"
+      },
+      "five_layer_count": 5,
+      "branch_count": 13
+    }
+  ],
+  "directional_correct": 5,
+  "directional_total": 6
+}

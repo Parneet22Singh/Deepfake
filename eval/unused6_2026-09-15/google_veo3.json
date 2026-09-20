@@ -1,0 +1,4464 @@
+{
+  "schema_version": "1.1",
+  "metadata": {
+    "path": "C:\\Temp\\neuroforge_unused6_2026-09-15\\google_veo3.mp4",
+    "size_bytes": 5081321,
+    "sha256": "dd12673518b12ec23f8a08ed494593e7c488d31a64f7ef09d961d9d3fe9a95ff",
+    "container": "mp4",
+    "codec": "AV01",
+    "width": 1920,
+    "height": 1080,
+    "fps": 24.0,
+    "frame_count": 720,
+    "duration_seconds": 30.0,
+    "audio_present": true,
+    "quality_metrics": {
+      "container": "mp4",
+      "codec": "AV01",
+      "resolution_pixels": 2073600,
+      "fps_valid": true,
+      "frame_count_valid": true,
+      "bits_per_pixel_frame": 0.02722759,
+      "quality_tier": "low-bitrate",
+      "global_compression_confounder": true,
+      "codec_name": "av1",
+      "pix_fmt": "yuv420p",
+      "bit_rate": "1222896",
+      "color_range": "tv",
+      "ffprobe_available": true
+    },
+    "warnings": []
+  },
+  "sampling": {
+    "requested": 48,
+    "indices": [
+      0,
+      15,
+      24,
+      30,
+      61,
+      76,
+      90,
+      107,
+      114,
+      122,
+      137,
+      152,
+      168,
+      198,
+      214,
+      229,
+      244,
+      260,
+      275,
+      305,
+      321,
+      327,
+      351,
+      367,
+      375,
+      382,
+      399,
+      413,
+      428,
+      458,
+      474,
+      489,
+      507,
+      520,
+      528,
+      550,
+      566,
+      570,
+      591,
+      596,
+      611,
+      633,
+      642,
+      657,
+      678,
+      687,
+      688,
+      719
+    ],
+    "timestamps": [
+      0.0,
+      0.625,
+      1.0,
+      1.25,
+      2.541667,
+      3.166667,
+      3.75,
+      4.458333,
+      4.75,
+      5.083333,
+      5.708333,
+      6.333333,
+      7.0,
+      8.25,
+      8.916667,
+      9.541667,
+      10.166667,
+      10.833333,
+      11.458333,
+      12.708333,
+      13.375,
+      13.625,
+      14.625,
+      15.291667,
+      15.625,
+      15.916667,
+      16.625,
+      17.208333,
+      17.833333,
+      19.083333,
+      19.75,
+      20.375,
+      21.125,
+      21.666667,
+      22.0,
+      22.916667,
+      23.583333,
+      23.75,
+      24.625,
+      24.833333,
+      25.458333,
+      26.375,
+      26.75,
+      27.375,
+      28.25,
+      28.625,
+      28.666667,
+      29.958333
+    ],
+    "method": "uniform+adaptive-motion",
+    "coverage": 1.0,
+    "warnings": []
+  },
+  "branches": {
+    "scene": {
+      "name": "scene",
+      "status": "ok",
+      "score": null,
+      "confidence": 0.0,
+      "findings": [
+        "scene boundaries detected"
+      ],
+      "metrics": {
+        "comparisons": 719,
+        "median_histogram_distance": 0.05365686067624478,
+        "max_histogram_distance": 0.9904165612697067,
+        "cut_rate": 0.05006954102920723,
+        "cut_indices": [
+          22,
+          44,
+          65,
+          90,
+          112,
+          131,
+          151,
+          172,
+          191,
+          213,
+          234,
+          258,
+          279,
+          302,
+          324,
+          326,
+          350,
+          373,
+          387,
+          397,
+          417,
+          439,
+          459,
+          484,
+          505,
+          526,
+          547,
+          568,
+          590,
+          612,
+          633,
+          644,
+          655,
+          667,
+          676,
+          686
+        ],
+        "sampled_frame_indices": [
+          0,
+          15,
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          305,
+          321,
+          327,
+          351,
+          367,
+          375,
+          382,
+          399,
+          413,
+          428,
+          458,
+          474,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ]
+      },
+      "limitations": []
+    },
+    "temporal": {
+      "name": "temporal",
+      "status": "ok",
+      "score": 0.125,
+      "confidence": 1.0,
+      "findings": [],
+      "metrics": {
+        "pairs": 29,
+        "excluded_scene_cut_pairs": 18,
+        "sampled_frame_count": 48,
+        "median_frame_gap": 15.0,
+        "temporal_interval_supported": true,
+        "temporal_consistency": 0.875,
+        "anomaly_residual": 0.125,
+        "median_warp_error": 0.24994226579520695,
+        "mad_warp_error": 0.08814896514161219,
+        "motion_compensated_residual": 0.745263575177933,
+        "residual_outlier_fraction": 0.0,
+        "feature_round_trip_outlier_fraction": 0.0,
+        "local_residual_outlier_fraction": 0.06896551724137931,
+        "median_local_residual_ratio": 2.4463920858598485,
+        "local_residual_inconsistency": 0.4821306952866162,
+        "feature_tracking_pairs": 27,
+        "median_feature_round_trip_error": 54.9688720703125,
+        "tracked_features": 1599,
+        "median_motion_magnitude": 5.6767377853393555,
+        "abrupt_transition_count": 0,
+        "abrupt_transition_indices": [],
+        "sampled_frame_indices": [
+          0,
+          15,
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          305,
+          321,
+          327,
+          351,
+          367,
+          375,
+          382,
+          399,
+          413,
+          428,
+          458,
+          474,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ]
+      },
+      "limitations": []
+    },
+    "recompression": {
+      "name": "recompression",
+      "status": "ok",
+      "score": 0.1295820801664417,
+      "confidence": 1.0,
+      "findings": [],
+      "metrics": {
+        "frames": 32,
+        "jpeg_quality": 75,
+        "median_residual": 0.0037912900049423062,
+        "p95_residual": 0.005474910231582344,
+        "median_blockiness_ratio": 1.0674762329677385,
+        "mad_residual": 0.0004817437262971025,
+        "residual_inconsistency": 0.13972405079567254,
+        "blockiness_inconsistency": 0.08926095024926418,
+        "residual_outlier_fraction": 0.03125,
+        "median_localized_residual_ratio": 0.6611634296199334,
+        "localized_residual_signal": 0.0,
+        "localized_residual_variation": 0.31014031982981743,
+        "global_compression_signal": 0.0075825800098846124,
+        "sampled_frame_indices": [
+          0,
+          15,
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          305,
+          321,
+          327,
+          351,
+          367,
+          375,
+          382,
+          399,
+          413,
+          428,
+          458,
+          474,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ]
+      },
+      "limitations": []
+    },
+    "frequency": {
+      "name": "frequency",
+      "status": "ok",
+      "score": 0.5125611902169316,
+      "confidence": 1.0,
+      "findings": [
+        "within-video high-frequency/noise inconsistency detected"
+      ],
+      "metrics": {
+        "frames": 32,
+        "median_high_frequency_ratio": 0.40895773470401764,
+        "mad_high_frequency_ratio": 0.04741162061691284,
+        "median_noise_sigma": 0.03374894708395004,
+        "mad_noise_sigma": 0.00677871610969305,
+        "noise_p95": 0.06228841505944728,
+        "noise_inconsistency": 0.8746968136975288,
+        "high_frequency_inconsistency": 0.3394969231233399,
+        "noise_outlier_fraction": 0.03125,
+        "median_localized_noise_ratio": 2.4327820394491697,
+        "localized_noise_signal": 0.4775940131497232,
+        "localized_noise_variation": 0.8217539236307584,
+        "global_noise_confounder": false,
+        "sampled_frame_indices": [
+          0,
+          15,
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          305,
+          321,
+          327,
+          351,
+          367,
+          375,
+          382,
+          399,
+          413,
+          428,
+          458,
+          474,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ]
+      },
+      "limitations": []
+    },
+    "face": {
+      "name": "face",
+      "status": "ok",
+      "score": 0.9290703837933179,
+      "confidence": 0.8125,
+      "findings": [
+        "repeated face-like region has inconsistent geometry"
+      ],
+      "metrics": {
+        "frames": 48,
+        "detection_frames": 39,
+        "detections": 75,
+        "detection_rate": 0.8125,
+        "median_candidates_per_frame": 2.0,
+        "observation_indices": [
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          327,
+          351,
+          367,
+          382,
+          458,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ],
+        "track_count": 1,
+        "candidate_ambiguity": 2.0,
+        "track_continuity": 0.8125,
+        "median_position_step": 0.01281489231629938,
+        "median_size_step": 0.027628288908391897,
+        "position_instability": 0.8455495479463992,
+        "size_instability": 0.9635586028604584,
+        "geometry_cv": 0.32875836778990847,
+        "flow_supported_pairs": 38,
+        "flow_support": 1.0,
+        "flow_residual_median": 0.9981369078159332,
+        "flow_residual_outlier_fraction": 0.2631578947368421,
+        "sampled_frame_indices": [
+          0,
+          15,
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          305,
+          321,
+          327,
+          351,
+          367,
+          375,
+          382,
+          399,
+          413,
+          428,
+          458,
+          474,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ]
+      },
+      "limitations": [
+        "skin/shape regions are not face identities or authenticity evidence"
+      ]
+    },
+    "spatial": {
+      "name": "spatial",
+      "status": "ok",
+      "score": null,
+      "confidence": 0.0,
+      "findings": [],
+      "metrics": {
+        "frames": 32,
+        "median_localized_residual": 4.265063285827637,
+        "mad_localized_residual": 1.103667140007019,
+        "localized_residual_signal": 0.2831329107284546,
+        "hotspot_persistence": 0.15625,
+        "hotspot_instability": 0.25870857182862966,
+        "median_global_noise": 0.012670099501516305,
+        "global_quality_confounder": false,
+        "hotspot_tile": 28,
+        "outlier_fraction": 0.03125,
+        "sampled_frame_indices": [
+          0,
+          15,
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          305,
+          321,
+          327,
+          351,
+          367,
+          375,
+          382,
+          399,
+          413,
+          428,
+          458,
+          474,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ]
+      },
+      "limitations": []
+    },
+    "integrity": {
+      "name": "integrity",
+      "status": "ok",
+      "score": 0.5439114379882812,
+      "confidence": 1.0,
+      "findings": [
+        "transform-invariant residual/flow inconsistency detected"
+      ],
+      "metrics": {
+        "pairs": 31,
+        "normalization": "border-crop-center-aspect-resize-256x144",
+        "median_warp_residual": 0.24444354188208486,
+        "residual_outlier_fraction": 0.03225806451612903,
+        "median_flow_divergence": 2.4238929748535156,
+        "median_occlusion_fraction": 0.5806749131944444,
+        "flow_divergence_signal": 0.9695571899414063,
+        "occlusion_signal": 1.0,
+        "local_residual_outlier_fraction": 0.03225806451612903,
+        "leave_one_region_out_support": 0.9462049281347589,
+        "leave_one_region_out_ratio": 2.4268584957074086,
+        "median_dct_high_frequency_energy": 1.1078850626945496,
+        "dct_energy_inconsistency": 1.0,
+        "sampled_frame_indices": [
+          0,
+          15,
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          305,
+          321,
+          327,
+          351,
+          367,
+          375,
+          382,
+          399,
+          413,
+          428,
+          458,
+          474,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ]
+      },
+      "limitations": []
+    },
+    "periodicity": {
+      "name": "periodicity",
+      "status": "ok",
+      "score": null,
+      "confidence": 0.0,
+      "findings": [],
+      "metrics": {
+        "frames": 32,
+        "median_adjacent_signature_distance": 64.12797546386719,
+        "duplicate_rate": 0.03225806451612903,
+        "longest_duplicate_run": 1,
+        "periodic_match_rate": 0.0,
+        "periodic_lag_count": 10,
+        "sampled_frame_indices": [
+          0,
+          15,
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          305,
+          321,
+          327,
+          351,
+          367,
+          375,
+          382,
+          399,
+          413,
+          428,
+          458,
+          474,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ]
+      },
+      "limitations": []
+    },
+    "wavelet": {
+      "name": "wavelet",
+      "status": "ok",
+      "score": 0.4835719147500317,
+      "confidence": 1.0,
+      "findings": [
+        "Haar subband energy changed with localized temporal instability"
+      ],
+      "metrics": {
+        "frames": 32,
+        "pairs": 22,
+        "subband_energy_median": {
+          "ll": 0.999999,
+          "lh": 0.046958,
+          "hl": 0.053158,
+          "hh": 0.025261
+        },
+        "subband_energy_mad": {
+          "ll": 0.0,
+          "lh": 0.018557,
+          "hl": 0.016359,
+          "hh": 0.007476
+        },
+        "multiscale_levels": 2,
+        "level2_subband_energy_median": {
+          "ll": 1.999997,
+          "lh": 0.13513,
+          "hl": 0.149647,
+          "hh": 0.067716
+        },
+        "haar_temporal_instability": 0.7383383703470889,
+        "localized_detail_instability": 0.3870967741935484,
+        "detail_event_count": 1,
+        "instability_indices": [
+          137
+        ],
+        "median_subband_delta": 0.01825783122330904,
+        "cut_excluded_pairs": 9,
+        "sampled_frame_indices": [
+          0,
+          15,
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          305,
+          321,
+          327,
+          351,
+          367,
+          375,
+          382,
+          399,
+          413,
+          428,
+          458,
+          474,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ]
+      },
+      "limitations": [
+        "Haar diagnostics are signal inconsistencies, not manipulation proof"
+      ]
+    },
+    "resampling": {
+      "name": "resampling",
+      "status": "ok",
+      "score": null,
+      "confidence": 1.0,
+      "findings": [],
+      "metrics": {
+        "frames": 32,
+        "adjacent_signature_median": 64.12797546386719,
+        "adjacent_signature_mad": 15.651786804199219,
+        "duplicate_run": 1,
+        "interpolation_residual_median": 0.6343852234151174,
+        "interpolation_residual_mad": 0.15241768187138482,
+        "interpolation_event_count": 1,
+        "interpolation_event_indices": [
+          657
+        ],
+        "duplicate_residual_indices": [],
+        "diagnostic_score": 0.075,
+        "fusion_eligible": false,
+        "sampled_frame_indices": [
+          0,
+          15,
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          305,
+          321,
+          327,
+          351,
+          367,
+          375,
+          382,
+          399,
+          413,
+          428,
+          458,
+          474,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ]
+      },
+      "limitations": [
+        "resampling and duplicate residuals are diagnostics only; they are not manipulation claims"
+      ]
+    },
+    "codec": {
+      "name": "codec",
+      "status": "ok",
+      "score": 0.7,
+      "confidence": 1.0,
+      "findings": [
+        "irregular keyframe/GOP cadence detected"
+      ],
+      "metrics": {
+        "frames": 720,
+        "keyframe_count": 22,
+        "keyframe_indices": [
+          0,
+          22,
+          44,
+          112,
+          144,
+          172,
+          213,
+          258,
+          288,
+          302,
+          350,
+          397,
+          432,
+          484,
+          505,
+          526,
+          547,
+          576,
+          612,
+          644,
+          676,
+          686
+        ],
+        "gop_intervals": [
+          22.0,
+          22.0,
+          68.0,
+          32.0,
+          28.0,
+          41.0,
+          45.0,
+          30.0,
+          14.0,
+          48.0,
+          47.0,
+          35.0,
+          52.0,
+          21.0,
+          21.0,
+          21.0,
+          29.0,
+          36.0,
+          32.0,
+          32.0,
+          10.0
+        ],
+        "median_gop": 32.0,
+        "gop_interval_mad": 10.0,
+        "gop_interval_cv": 0.3125,
+        "timestamp_delta_jitter": 0.0,
+        "gop_irregularity_signal": 1.0,
+        "timestamp_irregularity_signal": 0.0,
+        "sampled_frame_indices": [
+          0,
+          15,
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          305,
+          321,
+          327,
+          351,
+          367,
+          375,
+          382,
+          399,
+          413,
+          428,
+          458,
+          474,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ]
+      },
+      "limitations": [
+        "GOP cadence is codec/container evidence, not proof of editing"
+      ]
+    },
+    "avsync": {
+      "name": "avsync",
+      "status": "ok",
+      "score": null,
+      "confidence": 0.0,
+      "findings": [],
+      "metrics": {
+        "video_start_time": 0.0,
+        "audio_start_time": 0.0,
+        "stream_start_offset": 0.0,
+        "video_duration": 30.0,
+        "audio_duration": 30.014,
+        "duration_delta": 0.013999999999999346,
+        "timing_support": 0.0,
+        "sampled_frame_indices": [
+          0,
+          15,
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          305,
+          321,
+          327,
+          351,
+          367,
+          375,
+          382,
+          399,
+          413,
+          428,
+          458,
+          474,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ]
+      },
+      "limitations": [
+        "audio/video timing is within normal muxing tolerance"
+      ]
+    },
+    "audio": {
+      "name": "audio",
+      "status": "ok",
+      "score": null,
+      "confidence": 0.0,
+      "findings": [],
+      "metrics": {
+        "decoder": "ffmpeg",
+        "sample_rate": 16000,
+        "channels": 1,
+        "duration_seconds": 30.013,
+        "windows": 120,
+        "median_rms": 0.06370563060045242,
+        "mad_rms": 0.0281530674546957,
+        "median_rms_jump": 0.36003885477290254,
+        "median_spectral_jump": 0.031619638371850556,
+        "rms_inconsistency": 1.0,
+        "spectral_inconsistency": 1.0,
+        "rms_jump_outlier_fraction": 0.025210084033613446,
+        "spectral_jump_outlier_fraction": 0.01680672268907563,
+        "discontinuity_support": 0.0,
+        "clipping_rate": 0.00036666666666666667,
+        "rms_outlier_fraction": 0.0,
+        "sampled_frame_indices": [
+          0,
+          15,
+          24,
+          30,
+          61,
+          76,
+          90,
+          107,
+          114,
+          122,
+          137,
+          152,
+          168,
+          198,
+          214,
+          229,
+          244,
+          260,
+          275,
+          305,
+          321,
+          327,
+          351,
+          367,
+          375,
+          382,
+          399,
+          413,
+          428,
+          458,
+          474,
+          489,
+          507,
+          520,
+          528,
+          550,
+          566,
+          570,
+          591,
+          596,
+          611,
+          633,
+          642,
+          657,
+          678,
+          687,
+          688,
+          719
+        ]
+      },
+      "limitations": []
+    }
+  },
+  "fusion": {
+    "label": "mixed-anomaly-signal",
+    "score": 0.583045,
+    "used_branches": [
+      "codec",
+      "face",
+      "frequency",
+      "integrity",
+      "recompression",
+      "temporal",
+      "wavelet"
+    ],
+    "used_evidence_groups": [
+      "codec",
+      "motion",
+      "spatial",
+      "wavelet"
+    ],
+    "evidence_coverage": 0.755667,
+    "branch_scores": {
+      "codec": 0.7,
+      "face": 0.92907,
+      "frequency": 0.512561,
+      "integrity": 0.543911,
+      "recompression": 0.129582,
+      "temporal": 0.125,
+      "wavelet": 0.483572
+    },
+    "branch_reliability": {
+      "codec": 0.35,
+      "face": 0.8125,
+      "frequency": 0.35,
+      "integrity": 1.0,
+      "recompression": 0.35,
+      "temporal": 1.0,
+      "wavelet": 1.0
+    },
+    "group_scores": {
+      "codec": 0.512561,
+      "motion": 0.543911,
+      "spatial": 0.92907,
+      "wavelet": 0.483572
+    },
+    "group_directional_votes": {
+      "codec": {
+        "representative_branch": "frequency",
+        "score": 0.512561,
+        "reliability": 0.35,
+        "direction": "positive",
+        "vote": 1,
+        "supported": true,
+        "support": 0.008793
+      },
+      "motion": {
+        "representative_branch": "integrity",
+        "score": 0.543911,
+        "reliability": 1.0,
+        "direction": "positive",
+        "vote": 1,
+        "supported": true,
+        "support": 0.087823
+      },
+      "spatial": {
+        "representative_branch": "face",
+        "score": 0.92907,
+        "reliability": 0.8125,
+        "direction": "positive",
+        "vote": 1,
+        "supported": true,
+        "support": 0.697239
+      },
+      "wavelet": {
+        "representative_branch": "wavelet",
+        "score": 0.483572,
+        "reliability": 1.0,
+        "direction": "neutral",
+        "vote": 0,
+        "supported": true,
+        "support": 0.0
+      }
+    },
+    "group_support": {
+      "codec": 0.008793,
+      "motion": 0.087823,
+      "spatial": 0.697239,
+      "wavelet": 0.0
+    },
+    "directional_vote_summary": {
+      "positive_groups": [
+        "codec",
+        "motion",
+        "spatial"
+      ],
+      "negative_groups": [],
+      "neutral_groups": [
+        "wavelet"
+      ],
+      "positive_count": 3,
+      "negative_count": 0,
+      "neutral_count": 1,
+      "status": "directionally-consistent"
+    },
+    "robust_group_median": 0.528236,
+    "robust_group_mad": 0.03017,
+    "group_score_range": 0.445498,
+    "group_score_p10": 0.49226869739010165,
+    "group_score_p90": 0.8135227000518069,
+    "disagreement_penalty": 0.146921,
+    "positive_evidence_score": null,
+    "positive_evidence_groups": [
+      "codec",
+      "motion",
+      "wavelet"
+    ],
+    "positive_evidence_policy": {
+      "score_floor": 0.35,
+      "max_group_range": 0.2,
+      "minimum_independent_groups": 2,
+      "quality_sensitive_groups": [
+        "codec"
+      ],
+      "use": "preserve supported positive consensus from dilution; quality-sensitive groups cannot support it alone and disagreement still forces abstention"
+    },
+    "quality_sensitive_only": false,
+    "stable_anomaly_score": 0.528236,
+    "instability_score": 0.315571,
+    "provisional_positive": false,
+    "provisional_positive_reason": "independent-groups-do-not-agree",
+    "provisional_positive_policy": {
+      "use": "analysis-only; production remains an anomaly signal",
+      "score_floor": 0.5,
+      "max_group_range": 0.2,
+      "minimum_independent_groups": 2
+    },
+    "group_consensus": {
+      "status": "mixed",
+      "group_count": 4,
+      "consensus_group_count": 3,
+      "consensus_fraction": 0.75,
+      "groups": [
+        "codec",
+        "motion",
+        "wavelet"
+      ],
+      "tolerance": 0.35
+    },
+    "rejected_branches": {},
+    "time_aligned_evidence": {
+      "status": "cross-branch-supported",
+      "event_count": 77,
+      "coincident_event_count": 20,
+      "supporting_branch_count": 3,
+      "score": 0.377358,
+      "confidence": 1.0,
+      "events": [
+        {
+          "start_frame": 22,
+          "end_frame": 24,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 90,
+          "end_frame": 90,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 112,
+          "end_frame": 114,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 137,
+          "end_frame": 137,
+          "branches": [
+            "face",
+            "wavelet"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 151,
+          "end_frame": 152,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 213,
+          "end_frame": 214,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 258,
+          "end_frame": 260,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 324,
+          "end_frame": 327,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 3
+        },
+        {
+          "start_frame": 350,
+          "end_frame": 351,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 458,
+          "end_frame": 459,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 505,
+          "end_frame": 507,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 526,
+          "end_frame": 528,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 566,
+          "end_frame": 570,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 3
+        },
+        {
+          "start_frame": 590,
+          "end_frame": 591,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 611,
+          "end_frame": 612,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 633,
+          "end_frame": 633,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 642,
+          "end_frame": 644,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 655,
+          "end_frame": 657,
+          "branches": [
+            "face",
+            "resampling",
+            "scene"
+          ],
+          "branch_count": 3,
+          "event_count": 3
+        },
+        {
+          "start_frame": 676,
+          "end_frame": 678,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 686,
+          "end_frame": 688,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 3
+        }
+      ],
+      "tolerance_frames": 2,
+      "limitations": [
+        "coincidence supports review priority, not a manipulation claim",
+        "events from a single branch are not cross-branch evidence"
+      ]
+    },
+    "reason_codes": [
+      "correlated-branches-collapsed",
+      "global-compression-confounder"
+    ],
+    "rule": "weighted mean of supported classical anomaly scores; confidence and coverage weight evidence; no ML calibration"
+  },
+  "fusion_sets": {
+    "legacy": {
+      "label": "high-anomaly-signal",
+      "score": 0.633532,
+      "used_branches": [
+        "face",
+        "frequency",
+        "integrity",
+        "recompression",
+        "temporal"
+      ],
+      "used_evidence_groups": [
+        "codec",
+        "motion",
+        "spatial"
+      ],
+      "evidence_coverage": 0.689407,
+      "branch_scores": {
+        "face": 0.92907,
+        "frequency": 0.512561,
+        "integrity": 0.543911,
+        "recompression": 0.129582,
+        "temporal": 0.125
+      },
+      "branch_reliability": {
+        "face": 0.8125,
+        "frequency": 0.35,
+        "integrity": 1.0,
+        "recompression": 0.35,
+        "temporal": 1.0
+      },
+      "group_scores": {
+        "codec": 0.512561,
+        "motion": 0.543911,
+        "spatial": 0.92907
+      },
+      "group_directional_votes": {
+        "codec": {
+          "representative_branch": "frequency",
+          "score": 0.512561,
+          "reliability": 0.35,
+          "direction": "positive",
+          "vote": 1,
+          "supported": true,
+          "support": 0.008793
+        },
+        "motion": {
+          "representative_branch": "integrity",
+          "score": 0.543911,
+          "reliability": 1.0,
+          "direction": "positive",
+          "vote": 1,
+          "supported": true,
+          "support": 0.087823
+        },
+        "spatial": {
+          "representative_branch": "face",
+          "score": 0.92907,
+          "reliability": 0.8125,
+          "direction": "positive",
+          "vote": 1,
+          "supported": true,
+          "support": 0.697239
+        }
+      },
+      "group_support": {
+        "codec": 0.008793,
+        "motion": 0.087823,
+        "spatial": 0.697239
+      },
+      "directional_vote_summary": {
+        "positive_groups": [
+          "codec",
+          "motion",
+          "spatial"
+        ],
+        "negative_groups": [],
+        "neutral_groups": [],
+        "positive_count": 3,
+        "negative_count": 0,
+        "neutral_count": 0,
+        "status": "directionally-consistent"
+      },
+      "robust_group_median": 0.543911,
+      "robust_group_mad": 0.03135,
+      "group_score_range": 0.416509,
+      "group_score_p10": 0.5188312397712015,
+      "group_score_p90": 0.8520385946323106,
+      "disagreement_penalty": 0.102322,
+      "positive_evidence_score": null,
+      "positive_evidence_groups": [
+        "codec",
+        "motion"
+      ],
+      "positive_evidence_policy": {
+        "score_floor": 0.35,
+        "max_group_range": 0.2,
+        "minimum_independent_groups": 2,
+        "quality_sensitive_groups": [
+          "codec"
+        ],
+        "use": "preserve supported positive consensus from dilution; quality-sensitive groups cannot support it alone and disagreement still forces abstention"
+      },
+      "quality_sensitive_only": false,
+      "stable_anomaly_score": 0.543911,
+      "instability_score": 0.300066,
+      "provisional_positive": false,
+      "provisional_positive_reason": "independent-groups-do-not-agree",
+      "provisional_positive_policy": {
+        "use": "analysis-only; production remains an anomaly signal",
+        "score_floor": 0.5,
+        "max_group_range": 0.2,
+        "minimum_independent_groups": 2
+      },
+      "group_consensus": {
+        "status": "mixed",
+        "group_count": 3,
+        "consensus_group_count": 2,
+        "consensus_fraction": 0.666667,
+        "groups": [
+          "codec",
+          "motion"
+        ],
+        "tolerance": 0.35
+      },
+      "rejected_branches": {},
+      "time_aligned_evidence": {
+        "status": "events-not-coincident",
+        "event_count": 39,
+        "coincident_event_count": 0,
+        "supporting_branch_count": 0,
+        "score": 0.0,
+        "confidence": 0.0,
+        "events": [],
+        "tolerance_frames": 2,
+        "limitations": [
+          "coincidence supports review priority, not a manipulation claim",
+          "events from a single branch are not cross-branch evidence"
+        ]
+      },
+      "reason_codes": [
+        "correlated-branches-collapsed",
+        "global-compression-confounder"
+      ],
+      "rule": "weighted mean of supported classical anomaly scores; confidence and coverage weight evidence; no ML calibration"
+    },
+    "new_additions": {
+      "label": "mixed-anomaly-signal",
+      "score": 0.525549,
+      "used_branches": [
+        "codec",
+        "wavelet"
+      ],
+      "used_evidence_groups": [
+        "codec",
+        "wavelet"
+      ],
+      "evidence_coverage": 0.735185,
+      "branch_scores": {
+        "codec": 0.7,
+        "wavelet": 0.483572
+      },
+      "branch_reliability": {
+        "codec": 0.35,
+        "wavelet": 1.0
+      },
+      "group_scores": {
+        "codec": 0.7,
+        "wavelet": 0.483572
+      },
+      "group_directional_votes": {
+        "codec": {
+          "representative_branch": "codec",
+          "score": 0.7,
+          "reliability": 0.35,
+          "direction": "positive",
+          "vote": 1,
+          "supported": true,
+          "support": 0.14
+        },
+        "wavelet": {
+          "representative_branch": "wavelet",
+          "score": 0.483572,
+          "reliability": 1.0,
+          "direction": "neutral",
+          "vote": 0,
+          "supported": true,
+          "support": 0.0
+        }
+      },
+      "group_support": {
+        "codec": 0.14,
+        "wavelet": 0.0
+      },
+      "directional_vote_summary": {
+        "positive_groups": [
+          "codec"
+        ],
+        "negative_groups": [],
+        "neutral_groups": [
+          "wavelet"
+        ],
+        "positive_count": 1,
+        "negative_count": 0,
+        "neutral_count": 1,
+        "status": "directionally-consistent"
+      },
+      "robust_group_median": 0.591786,
+      "robust_group_mad": 0.108214,
+      "group_score_range": 0.216428,
+      "group_score_p10": 0.5052147232750285,
+      "group_score_p90": 0.6783571914750032,
+      "disagreement_penalty": 0.0,
+      "positive_evidence_score": 0.525549,
+      "positive_evidence_groups": [
+        "codec",
+        "wavelet"
+      ],
+      "positive_evidence_policy": {
+        "score_floor": 0.35,
+        "max_group_range": 0.2,
+        "minimum_independent_groups": 2,
+        "quality_sensitive_groups": [
+          "codec"
+        ],
+        "use": "preserve supported positive consensus from dilution; quality-sensitive groups cannot support it alone and disagreement still forces abstention"
+      },
+      "quality_sensitive_only": false,
+      "stable_anomaly_score": 0.591786,
+      "instability_score": 0.302999,
+      "provisional_positive": false,
+      "provisional_positive_reason": "independent-groups-do-not-agree",
+      "provisional_positive_policy": {
+        "use": "analysis-only; production remains an anomaly signal",
+        "score_floor": 0.5,
+        "max_group_range": 0.2,
+        "minimum_independent_groups": 2
+      },
+      "group_consensus": {
+        "status": "consistent",
+        "group_count": 2,
+        "consensus_group_count": 2,
+        "consensus_fraction": 1.0,
+        "groups": [
+          "codec",
+          "wavelet"
+        ],
+        "tolerance": 0.35
+      },
+      "rejected_branches": {},
+      "time_aligned_evidence": {
+        "status": "events-not-coincident",
+        "event_count": 2,
+        "coincident_event_count": 0,
+        "supporting_branch_count": 0,
+        "score": 0.0,
+        "confidence": 0.0,
+        "events": [],
+        "tolerance_frames": 2,
+        "limitations": [
+          "coincidence supports review priority, not a manipulation claim",
+          "events from a single branch are not cross-branch evidence"
+        ]
+      },
+      "reason_codes": [
+        "global-compression-confounder",
+        "supported-positive-evidence-preserved"
+      ],
+      "rule": "weighted mean of supported classical anomaly scores; confidence and coverage weight evidence; no ML calibration"
+    }
+  },
+  "warnings": [
+    "GOP cadence is codec/container evidence, not proof of editing",
+    "Haar diagnostics are signal inconsistencies, not manipulation proof",
+    "audio/video timing is within normal muxing tolerance",
+    "resampling and duplicate residuals are diagnostics only; they are not manipulation claims",
+    "skin/shape regions are not face identities or authenticity evidence"
+  ],
+  "localization": {
+    "events": [
+      {
+        "frame_index": 0,
+        "timestamp_seconds": 0.0,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 22,
+        "timestamp_seconds": 0.916667,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 22,
+        "timestamp_seconds": 0.916667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 24,
+        "timestamp_seconds": 1.0,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 30,
+        "timestamp_seconds": 1.25,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 44,
+        "timestamp_seconds": 1.833333,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 44,
+        "timestamp_seconds": 1.833333,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 61,
+        "timestamp_seconds": 2.541667,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 65,
+        "timestamp_seconds": 2.708333,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 76,
+        "timestamp_seconds": 3.166667,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 90,
+        "timestamp_seconds": 3.75,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 90,
+        "timestamp_seconds": 3.75,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 107,
+        "timestamp_seconds": 4.458333,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 112,
+        "timestamp_seconds": 4.666667,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 112,
+        "timestamp_seconds": 4.666667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 114,
+        "timestamp_seconds": 4.75,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 122,
+        "timestamp_seconds": 5.083333,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 131,
+        "timestamp_seconds": 5.458333,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 137,
+        "timestamp_seconds": 5.708333,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 137,
+        "timestamp_seconds": 5.708333,
+        "branch": "wavelet",
+        "kind": "wavelet-instability"
+      },
+      {
+        "frame_index": 144,
+        "timestamp_seconds": 6.0,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 151,
+        "timestamp_seconds": 6.291667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 152,
+        "timestamp_seconds": 6.333333,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 168,
+        "timestamp_seconds": 7.0,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 172,
+        "timestamp_seconds": 7.166667,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 172,
+        "timestamp_seconds": 7.166667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 191,
+        "timestamp_seconds": 7.958333,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 198,
+        "timestamp_seconds": 8.25,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 213,
+        "timestamp_seconds": 8.875,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 213,
+        "timestamp_seconds": 8.875,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 214,
+        "timestamp_seconds": 8.916667,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 229,
+        "timestamp_seconds": 9.541667,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 234,
+        "timestamp_seconds": 9.75,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 244,
+        "timestamp_seconds": 10.166667,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 258,
+        "timestamp_seconds": 10.75,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 258,
+        "timestamp_seconds": 10.75,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 260,
+        "timestamp_seconds": 10.833333,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 275,
+        "timestamp_seconds": 11.458333,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 279,
+        "timestamp_seconds": 11.625,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 288,
+        "timestamp_seconds": 12.0,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 302,
+        "timestamp_seconds": 12.583333,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 302,
+        "timestamp_seconds": 12.583333,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 324,
+        "timestamp_seconds": 13.5,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 326,
+        "timestamp_seconds": 13.583333,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 327,
+        "timestamp_seconds": 13.625,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 350,
+        "timestamp_seconds": 14.583333,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 350,
+        "timestamp_seconds": 14.583333,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 351,
+        "timestamp_seconds": 14.625,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 367,
+        "timestamp_seconds": 15.291667,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 373,
+        "timestamp_seconds": 15.541667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 382,
+        "timestamp_seconds": 15.916667,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 387,
+        "timestamp_seconds": 16.125,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 397,
+        "timestamp_seconds": 16.541667,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 397,
+        "timestamp_seconds": 16.541667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 417,
+        "timestamp_seconds": 17.375,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 432,
+        "timestamp_seconds": 18.0,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 439,
+        "timestamp_seconds": 18.291667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 458,
+        "timestamp_seconds": 19.083333,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 459,
+        "timestamp_seconds": 19.125,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 484,
+        "timestamp_seconds": 20.166667,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 484,
+        "timestamp_seconds": 20.166667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 489,
+        "timestamp_seconds": 20.375,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 505,
+        "timestamp_seconds": 21.041667,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 505,
+        "timestamp_seconds": 21.041667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 507,
+        "timestamp_seconds": 21.125,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 520,
+        "timestamp_seconds": 21.666667,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 526,
+        "timestamp_seconds": 21.916667,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 526,
+        "timestamp_seconds": 21.916667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 528,
+        "timestamp_seconds": 22.0,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 547,
+        "timestamp_seconds": 22.791667,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 547,
+        "timestamp_seconds": 22.791667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 550,
+        "timestamp_seconds": 22.916667,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 566,
+        "timestamp_seconds": 23.583333,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 568,
+        "timestamp_seconds": 23.666667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 570,
+        "timestamp_seconds": 23.75,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 576,
+        "timestamp_seconds": 24.0,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 590,
+        "timestamp_seconds": 24.583333,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 591,
+        "timestamp_seconds": 24.625,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 596,
+        "timestamp_seconds": 24.833333,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 611,
+        "timestamp_seconds": 25.458333,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 612,
+        "timestamp_seconds": 25.5,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 612,
+        "timestamp_seconds": 25.5,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 633,
+        "timestamp_seconds": 26.375,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 633,
+        "timestamp_seconds": 26.375,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 642,
+        "timestamp_seconds": 26.75,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 644,
+        "timestamp_seconds": 26.833333,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 644,
+        "timestamp_seconds": 26.833333,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 655,
+        "timestamp_seconds": 27.291667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 657,
+        "timestamp_seconds": 27.375,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 657,
+        "timestamp_seconds": 27.375,
+        "branch": "resampling",
+        "kind": "interpolation-residual"
+      },
+      {
+        "frame_index": 667,
+        "timestamp_seconds": 27.791667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 676,
+        "timestamp_seconds": 28.166667,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 676,
+        "timestamp_seconds": 28.166667,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 678,
+        "timestamp_seconds": 28.25,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 686,
+        "timestamp_seconds": 28.583333,
+        "branch": "codec",
+        "kind": "keyframe"
+      },
+      {
+        "frame_index": 686,
+        "timestamp_seconds": 28.583333,
+        "branch": "scene",
+        "kind": "scene-cut"
+      },
+      {
+        "frame_index": 687,
+        "timestamp_seconds": 28.625,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 688,
+        "timestamp_seconds": 28.666667,
+        "branch": "face",
+        "kind": "face-region-observation"
+      },
+      {
+        "frame_index": 719,
+        "timestamp_seconds": 29.958333,
+        "branch": "face",
+        "kind": "face-region-observation"
+      }
+    ],
+    "segments": [
+      {
+        "branch": "codec",
+        "start_seconds": 0.0,
+        "end_seconds": 30.0,
+        "score": 0.7,
+        "confidence": 1.0,
+        "sample_count": 48
+      },
+      {
+        "branch": "face",
+        "start_seconds": 0.0,
+        "end_seconds": 30.0,
+        "score": 0.9290703837933179,
+        "confidence": 0.8125,
+        "sample_count": 48
+      },
+      {
+        "branch": "frequency",
+        "start_seconds": 0.0,
+        "end_seconds": 30.0,
+        "score": 0.5125611902169316,
+        "confidence": 1.0,
+        "sample_count": 48
+      },
+      {
+        "branch": "integrity",
+        "start_seconds": 0.0,
+        "end_seconds": 30.0,
+        "score": 0.5439114379882812,
+        "confidence": 1.0,
+        "sample_count": 48
+      },
+      {
+        "branch": "recompression",
+        "start_seconds": 0.0,
+        "end_seconds": 30.0,
+        "score": 0.1295820801664417,
+        "confidence": 1.0,
+        "sample_count": 48
+      },
+      {
+        "branch": "temporal",
+        "start_seconds": 0.0,
+        "end_seconds": 30.0,
+        "score": 0.125,
+        "confidence": 1.0,
+        "sample_count": 48
+      },
+      {
+        "branch": "wavelet",
+        "start_seconds": 0.0,
+        "end_seconds": 30.0,
+        "score": 0.4835719147500317,
+        "confidence": 1.0,
+        "sample_count": 48
+      }
+    ],
+    "event_count": 99,
+    "consistency": {
+      "status": "cross-branch-supported",
+      "bin_seconds": 2.5,
+      "consensus_event_count": 12,
+      "supporting_branch_count": 4,
+      "event_branch_count": 5,
+      "support_fraction": 0.8,
+      "events": [
+        {
+          "bucket": 0,
+          "start_seconds": 0.0,
+          "end_seconds": 2.5,
+          "branches": [
+            "codec",
+            "face",
+            "scene"
+          ],
+          "branch_count": 3
+        },
+        {
+          "bucket": 1,
+          "start_seconds": 2.5,
+          "end_seconds": 5.0,
+          "branches": [
+            "codec",
+            "face",
+            "scene"
+          ],
+          "branch_count": 3
+        },
+        {
+          "bucket": 2,
+          "start_seconds": 5.0,
+          "end_seconds": 7.5,
+          "branches": [
+            "codec",
+            "face",
+            "scene",
+            "wavelet"
+          ],
+          "branch_count": 4
+        },
+        {
+          "bucket": 3,
+          "start_seconds": 7.5,
+          "end_seconds": 10.0,
+          "branches": [
+            "codec",
+            "face",
+            "scene"
+          ],
+          "branch_count": 3
+        },
+        {
+          "bucket": 4,
+          "start_seconds": 10.0,
+          "end_seconds": 12.5,
+          "branches": [
+            "codec",
+            "face",
+            "scene"
+          ],
+          "branch_count": 3
+        },
+        {
+          "bucket": 5,
+          "start_seconds": 12.5,
+          "end_seconds": 15.0,
+          "branches": [
+            "codec",
+            "face",
+            "scene"
+          ],
+          "branch_count": 3
+        },
+        {
+          "bucket": 6,
+          "start_seconds": 15.0,
+          "end_seconds": 17.5,
+          "branches": [
+            "codec",
+            "face",
+            "scene"
+          ],
+          "branch_count": 3
+        },
+        {
+          "bucket": 7,
+          "start_seconds": 17.5,
+          "end_seconds": 20.0,
+          "branches": [
+            "codec",
+            "face",
+            "scene"
+          ],
+          "branch_count": 3
+        },
+        {
+          "bucket": 8,
+          "start_seconds": 20.0,
+          "end_seconds": 22.5,
+          "branches": [
+            "codec",
+            "face",
+            "scene"
+          ],
+          "branch_count": 3
+        },
+        {
+          "bucket": 9,
+          "start_seconds": 22.5,
+          "end_seconds": 25.0,
+          "branches": [
+            "codec",
+            "face",
+            "scene"
+          ],
+          "branch_count": 3
+        },
+        {
+          "bucket": 10,
+          "start_seconds": 25.0,
+          "end_seconds": 27.5,
+          "branches": [
+            "codec",
+            "face",
+            "resampling",
+            "scene"
+          ],
+          "branch_count": 4
+        },
+        {
+          "bucket": 11,
+          "start_seconds": 27.5,
+          "end_seconds": 30.0,
+          "branches": [
+            "codec",
+            "face",
+            "scene"
+          ],
+          "branch_count": 3
+        }
+      ]
+    },
+    "time_aligned_evidence": {
+      "status": "cross-branch-supported",
+      "event_count": 77,
+      "coincident_event_count": 20,
+      "supporting_branch_count": 3,
+      "score": 0.377358,
+      "confidence": 1.0,
+      "events": [
+        {
+          "start_frame": 22,
+          "end_frame": 24,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 90,
+          "end_frame": 90,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 112,
+          "end_frame": 114,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 137,
+          "end_frame": 137,
+          "branches": [
+            "face",
+            "wavelet"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 151,
+          "end_frame": 152,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 213,
+          "end_frame": 214,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 258,
+          "end_frame": 260,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 324,
+          "end_frame": 327,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 3
+        },
+        {
+          "start_frame": 350,
+          "end_frame": 351,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 458,
+          "end_frame": 459,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 505,
+          "end_frame": 507,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 526,
+          "end_frame": 528,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 566,
+          "end_frame": 570,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 3
+        },
+        {
+          "start_frame": 590,
+          "end_frame": 591,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 611,
+          "end_frame": 612,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 633,
+          "end_frame": 633,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 642,
+          "end_frame": 644,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 655,
+          "end_frame": 657,
+          "branches": [
+            "face",
+            "resampling",
+            "scene"
+          ],
+          "branch_count": 3,
+          "event_count": 3
+        },
+        {
+          "start_frame": 676,
+          "end_frame": 678,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 2
+        },
+        {
+          "start_frame": 686,
+          "end_frame": 688,
+          "branches": [
+            "face",
+            "scene"
+          ],
+          "branch_count": 2,
+          "event_count": 3
+        }
+      ],
+      "tolerance_frames": 2,
+      "limitations": [
+        "coincidence supports review priority, not a manipulation claim",
+        "events from a single branch are not cross-branch evidence"
+      ]
+    },
+    "duration_seconds": 30.0,
+    "notes": [
+      "events are diagnostic locations, not proof of manipulation",
+      "a branch score without a localized event is clip-wide evidence"
+    ]
+  },
+  "stability": {
+    "enabled": false,
+    "windows": [],
+    "evaluations": [],
+    "reason": "pass --stability to evaluate duration and budget sensitivity"
+  },
+  "transcode_stability": {
+    "enabled": false,
+    "status": "not-requested"
+  },
+  "analysis_outputs": {
+    "deterministic_engine": {
+      "status": "available",
+      "authoritative": true,
+      "schema_version": "1.1",
+      "fusion": {
+        "label": "mixed-anomaly-signal",
+        "score": 0.583045,
+        "used_branches": [
+          "codec",
+          "face",
+          "frequency",
+          "integrity",
+          "recompression",
+          "temporal",
+          "wavelet"
+        ],
+        "used_evidence_groups": [
+          "codec",
+          "motion",
+          "spatial",
+          "wavelet"
+        ],
+        "evidence_coverage": 0.755667,
+        "branch_scores": {
+          "codec": 0.7,
+          "face": 0.92907,
+          "frequency": 0.512561,
+          "integrity": 0.543911,
+          "recompression": 0.129582,
+          "temporal": 0.125,
+          "wavelet": 0.483572
+        },
+        "branch_reliability": {
+          "codec": 0.35,
+          "face": 0.8125,
+          "frequency": 0.35,
+          "integrity": 1.0,
+          "recompression": 0.35,
+          "temporal": 1.0,
+          "wavelet": 1.0
+        },
+        "group_scores": {
+          "codec": 0.512561,
+          "motion": 0.543911,
+          "spatial": 0.92907,
+          "wavelet": 0.483572
+        },
+        "group_directional_votes": {
+          "codec": {
+            "representative_branch": "frequency",
+            "score": 0.512561,
+            "reliability": 0.35,
+            "direction": "positive",
+            "vote": 1,
+            "supported": true,
+            "support": 0.008793
+          },
+          "motion": {
+            "representative_branch": "integrity",
+            "score": 0.543911,
+            "reliability": 1.0,
+            "direction": "positive",
+            "vote": 1,
+            "supported": true,
+            "support": 0.087823
+          },
+          "spatial": {
+            "representative_branch": "face",
+            "score": 0.92907,
+            "reliability": 0.8125,
+            "direction": "positive",
+            "vote": 1,
+            "supported": true,
+            "support": 0.697239
+          },
+          "wavelet": {
+            "representative_branch": "wavelet",
+            "score": 0.483572,
+            "reliability": 1.0,
+            "direction": "neutral",
+            "vote": 0,
+            "supported": true,
+            "support": 0.0
+          }
+        },
+        "group_support": {
+          "codec": 0.008793,
+          "motion": 0.087823,
+          "spatial": 0.697239,
+          "wavelet": 0.0
+        },
+        "directional_vote_summary": {
+          "positive_groups": [
+            "codec",
+            "motion",
+            "spatial"
+          ],
+          "negative_groups": [],
+          "neutral_groups": [
+            "wavelet"
+          ],
+          "positive_count": 3,
+          "negative_count": 0,
+          "neutral_count": 1,
+          "status": "directionally-consistent"
+        },
+        "robust_group_median": 0.528236,
+        "robust_group_mad": 0.03017,
+        "group_score_range": 0.445498,
+        "group_score_p10": 0.49226869739010165,
+        "group_score_p90": 0.8135227000518069,
+        "disagreement_penalty": 0.146921,
+        "positive_evidence_score": null,
+        "positive_evidence_groups": [
+          "codec",
+          "motion",
+          "wavelet"
+        ],
+        "positive_evidence_policy": {
+          "score_floor": 0.35,
+          "max_group_range": 0.2,
+          "minimum_independent_groups": 2,
+          "quality_sensitive_groups": [
+            "codec"
+          ],
+          "use": "preserve supported positive consensus from dilution; quality-sensitive groups cannot support it alone and disagreement still forces abstention"
+        },
+        "quality_sensitive_only": false,
+        "stable_anomaly_score": 0.528236,
+        "instability_score": 0.315571,
+        "provisional_positive": false,
+        "provisional_positive_reason": "independent-groups-do-not-agree",
+        "provisional_positive_policy": {
+          "use": "analysis-only; production remains an anomaly signal",
+          "score_floor": 0.5,
+          "max_group_range": 0.2,
+          "minimum_independent_groups": 2
+        },
+        "group_consensus": {
+          "status": "mixed",
+          "group_count": 4,
+          "consensus_group_count": 3,
+          "consensus_fraction": 0.75,
+          "groups": [
+            "codec",
+            "motion",
+            "wavelet"
+          ],
+          "tolerance": 0.35
+        },
+        "rejected_branches": {},
+        "time_aligned_evidence": {
+          "status": "cross-branch-supported",
+          "event_count": 77,
+          "coincident_event_count": 20,
+          "supporting_branch_count": 3,
+          "score": 0.377358,
+          "confidence": 1.0,
+          "events": [
+            {
+              "start_frame": 22,
+              "end_frame": 24,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 90,
+              "end_frame": 90,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 112,
+              "end_frame": 114,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 137,
+              "end_frame": 137,
+              "branches": [
+                "face",
+                "wavelet"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 151,
+              "end_frame": 152,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 213,
+              "end_frame": 214,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 258,
+              "end_frame": 260,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 324,
+              "end_frame": 327,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 3
+            },
+            {
+              "start_frame": 350,
+              "end_frame": 351,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 458,
+              "end_frame": 459,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 505,
+              "end_frame": 507,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 526,
+              "end_frame": 528,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 566,
+              "end_frame": 570,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 3
+            },
+            {
+              "start_frame": 590,
+              "end_frame": 591,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 611,
+              "end_frame": 612,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 633,
+              "end_frame": 633,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 642,
+              "end_frame": 644,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 655,
+              "end_frame": 657,
+              "branches": [
+                "face",
+                "resampling",
+                "scene"
+              ],
+              "branch_count": 3,
+              "event_count": 3
+            },
+            {
+              "start_frame": 676,
+              "end_frame": 678,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 2
+            },
+            {
+              "start_frame": 686,
+              "end_frame": 688,
+              "branches": [
+                "face",
+                "scene"
+              ],
+              "branch_count": 2,
+              "event_count": 3
+            }
+          ],
+          "tolerance_frames": 2,
+          "limitations": [
+            "coincidence supports review priority, not a manipulation claim",
+            "events from a single branch are not cross-branch evidence"
+          ]
+        },
+        "reason_codes": [
+          "correlated-branches-collapsed",
+          "global-compression-confounder"
+        ],
+        "rule": "weighted mean of supported classical anomaly scores; confidence and coverage weight evidence; no ML calibration"
+      },
+      "branches": {
+        "scene": {
+          "name": "scene",
+          "status": "ok",
+          "score": null,
+          "confidence": 0.0,
+          "findings": [
+            "scene boundaries detected"
+          ],
+          "metrics": {
+            "comparisons": 719,
+            "median_histogram_distance": 0.05365686067624478,
+            "max_histogram_distance": 0.9904165612697067,
+            "cut_rate": 0.05006954102920723,
+            "cut_indices": [
+              22,
+              44,
+              65,
+              90,
+              112,
+              131,
+              151,
+              172,
+              191,
+              213,
+              234,
+              258,
+              279,
+              302,
+              324,
+              326,
+              350,
+              373,
+              387,
+              397,
+              417,
+              439,
+              459,
+              484,
+              505,
+              526,
+              547,
+              568,
+              590,
+              612,
+              633,
+              644,
+              655,
+              667,
+              676,
+              686
+            ],
+            "sampled_frame_indices": [
+              0,
+              15,
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              305,
+              321,
+              327,
+              351,
+              367,
+              375,
+              382,
+              399,
+              413,
+              428,
+              458,
+              474,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ]
+          },
+          "limitations": []
+        },
+        "temporal": {
+          "name": "temporal",
+          "status": "ok",
+          "score": 0.125,
+          "confidence": 1.0,
+          "findings": [],
+          "metrics": {
+            "pairs": 29,
+            "excluded_scene_cut_pairs": 18,
+            "sampled_frame_count": 48,
+            "median_frame_gap": 15.0,
+            "temporal_interval_supported": true,
+            "temporal_consistency": 0.875,
+            "anomaly_residual": 0.125,
+            "median_warp_error": 0.24994226579520695,
+            "mad_warp_error": 0.08814896514161219,
+            "motion_compensated_residual": 0.745263575177933,
+            "residual_outlier_fraction": 0.0,
+            "feature_round_trip_outlier_fraction": 0.0,
+            "local_residual_outlier_fraction": 0.06896551724137931,
+            "median_local_residual_ratio": 2.4463920858598485,
+            "local_residual_inconsistency": 0.4821306952866162,
+            "feature_tracking_pairs": 27,
+            "median_feature_round_trip_error": 54.9688720703125,
+            "tracked_features": 1599,
+            "median_motion_magnitude": 5.6767377853393555,
+            "abrupt_transition_count": 0,
+            "abrupt_transition_indices": [],
+            "sampled_frame_indices": [
+              0,
+              15,
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              305,
+              321,
+              327,
+              351,
+              367,
+              375,
+              382,
+              399,
+              413,
+              428,
+              458,
+              474,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ]
+          },
+          "limitations": []
+        },
+        "recompression": {
+          "name": "recompression",
+          "status": "ok",
+          "score": 0.1295820801664417,
+          "confidence": 1.0,
+          "findings": [],
+          "metrics": {
+            "frames": 32,
+            "jpeg_quality": 75,
+            "median_residual": 0.0037912900049423062,
+            "p95_residual": 0.005474910231582344,
+            "median_blockiness_ratio": 1.0674762329677385,
+            "mad_residual": 0.0004817437262971025,
+            "residual_inconsistency": 0.13972405079567254,
+            "blockiness_inconsistency": 0.08926095024926418,
+            "residual_outlier_fraction": 0.03125,
+            "median_localized_residual_ratio": 0.6611634296199334,
+            "localized_residual_signal": 0.0,
+            "localized_residual_variation": 0.31014031982981743,
+            "global_compression_signal": 0.0075825800098846124,
+            "sampled_frame_indices": [
+              0,
+              15,
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              305,
+              321,
+              327,
+              351,
+              367,
+              375,
+              382,
+              399,
+              413,
+              428,
+              458,
+              474,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ]
+          },
+          "limitations": []
+        },
+        "frequency": {
+          "name": "frequency",
+          "status": "ok",
+          "score": 0.5125611902169316,
+          "confidence": 1.0,
+          "findings": [
+            "within-video high-frequency/noise inconsistency detected"
+          ],
+          "metrics": {
+            "frames": 32,
+            "median_high_frequency_ratio": 0.40895773470401764,
+            "mad_high_frequency_ratio": 0.04741162061691284,
+            "median_noise_sigma": 0.03374894708395004,
+            "mad_noise_sigma": 0.00677871610969305,
+            "noise_p95": 0.06228841505944728,
+            "noise_inconsistency": 0.8746968136975288,
+            "high_frequency_inconsistency": 0.3394969231233399,
+            "noise_outlier_fraction": 0.03125,
+            "median_localized_noise_ratio": 2.4327820394491697,
+            "localized_noise_signal": 0.4775940131497232,
+            "localized_noise_variation": 0.8217539236307584,
+            "global_noise_confounder": false,
+            "sampled_frame_indices": [
+              0,
+              15,
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              305,
+              321,
+              327,
+              351,
+              367,
+              375,
+              382,
+              399,
+              413,
+              428,
+              458,
+              474,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ]
+          },
+          "limitations": []
+        },
+        "face": {
+          "name": "face",
+          "status": "ok",
+          "score": 0.9290703837933179,
+          "confidence": 0.8125,
+          "findings": [
+            "repeated face-like region has inconsistent geometry"
+          ],
+          "metrics": {
+            "frames": 48,
+            "detection_frames": 39,
+            "detections": 75,
+            "detection_rate": 0.8125,
+            "median_candidates_per_frame": 2.0,
+            "observation_indices": [
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              327,
+              351,
+              367,
+              382,
+              458,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ],
+            "track_count": 1,
+            "candidate_ambiguity": 2.0,
+            "track_continuity": 0.8125,
+            "median_position_step": 0.01281489231629938,
+            "median_size_step": 0.027628288908391897,
+            "position_instability": 0.8455495479463992,
+            "size_instability": 0.9635586028604584,
+            "geometry_cv": 0.32875836778990847,
+            "flow_supported_pairs": 38,
+            "flow_support": 1.0,
+            "flow_residual_median": 0.9981369078159332,
+            "flow_residual_outlier_fraction": 0.2631578947368421,
+            "sampled_frame_indices": [
+              0,
+              15,
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              305,
+              321,
+              327,
+              351,
+              367,
+              375,
+              382,
+              399,
+              413,
+              428,
+              458,
+              474,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ]
+          },
+          "limitations": [
+            "skin/shape regions are not face identities or authenticity evidence"
+          ]
+        },
+        "spatial": {
+          "name": "spatial",
+          "status": "ok",
+          "score": null,
+          "confidence": 0.0,
+          "findings": [],
+          "metrics": {
+            "frames": 32,
+            "median_localized_residual": 4.265063285827637,
+            "mad_localized_residual": 1.103667140007019,
+            "localized_residual_signal": 0.2831329107284546,
+            "hotspot_persistence": 0.15625,
+            "hotspot_instability": 0.25870857182862966,
+            "median_global_noise": 0.012670099501516305,
+            "global_quality_confounder": false,
+            "hotspot_tile": 28,
+            "outlier_fraction": 0.03125,
+            "sampled_frame_indices": [
+              0,
+              15,
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              305,
+              321,
+              327,
+              351,
+              367,
+              375,
+              382,
+              399,
+              413,
+              428,
+              458,
+              474,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ]
+          },
+          "limitations": []
+        },
+        "integrity": {
+          "name": "integrity",
+          "status": "ok",
+          "score": 0.5439114379882812,
+          "confidence": 1.0,
+          "findings": [
+            "transform-invariant residual/flow inconsistency detected"
+          ],
+          "metrics": {
+            "pairs": 31,
+            "normalization": "border-crop-center-aspect-resize-256x144",
+            "median_warp_residual": 0.24444354188208486,
+            "residual_outlier_fraction": 0.03225806451612903,
+            "median_flow_divergence": 2.4238929748535156,
+            "median_occlusion_fraction": 0.5806749131944444,
+            "flow_divergence_signal": 0.9695571899414063,
+            "occlusion_signal": 1.0,
+            "local_residual_outlier_fraction": 0.03225806451612903,
+            "leave_one_region_out_support": 0.9462049281347589,
+            "leave_one_region_out_ratio": 2.4268584957074086,
+            "median_dct_high_frequency_energy": 1.1078850626945496,
+            "dct_energy_inconsistency": 1.0,
+            "sampled_frame_indices": [
+              0,
+              15,
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              305,
+              321,
+              327,
+              351,
+              367,
+              375,
+              382,
+              399,
+              413,
+              428,
+              458,
+              474,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ]
+          },
+          "limitations": []
+        },
+        "periodicity": {
+          "name": "periodicity",
+          "status": "ok",
+          "score": null,
+          "confidence": 0.0,
+          "findings": [],
+          "metrics": {
+            "frames": 32,
+            "median_adjacent_signature_distance": 64.12797546386719,
+            "duplicate_rate": 0.03225806451612903,
+            "longest_duplicate_run": 1,
+            "periodic_match_rate": 0.0,
+            "periodic_lag_count": 10,
+            "sampled_frame_indices": [
+              0,
+              15,
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              305,
+              321,
+              327,
+              351,
+              367,
+              375,
+              382,
+              399,
+              413,
+              428,
+              458,
+              474,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ]
+          },
+          "limitations": []
+        },
+        "wavelet": {
+          "name": "wavelet",
+          "status": "ok",
+          "score": 0.4835719147500317,
+          "confidence": 1.0,
+          "findings": [
+            "Haar subband energy changed with localized temporal instability"
+          ],
+          "metrics": {
+            "frames": 32,
+            "pairs": 22,
+            "subband_energy_median": {
+              "ll": 0.999999,
+              "lh": 0.046958,
+              "hl": 0.053158,
+              "hh": 0.025261
+            },
+            "subband_energy_mad": {
+              "ll": 0.0,
+              "lh": 0.018557,
+              "hl": 0.016359,
+              "hh": 0.007476
+            },
+            "multiscale_levels": 2,
+            "level2_subband_energy_median": {
+              "ll": 1.999997,
+              "lh": 0.13513,
+              "hl": 0.149647,
+              "hh": 0.067716
+            },
+            "haar_temporal_instability": 0.7383383703470889,
+            "localized_detail_instability": 0.3870967741935484,
+            "detail_event_count": 1,
+            "instability_indices": [
+              137
+            ],
+            "median_subband_delta": 0.01825783122330904,
+            "cut_excluded_pairs": 9,
+            "sampled_frame_indices": [
+              0,
+              15,
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              305,
+              321,
+              327,
+              351,
+              367,
+              375,
+              382,
+              399,
+              413,
+              428,
+              458,
+              474,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ]
+          },
+          "limitations": [
+            "Haar diagnostics are signal inconsistencies, not manipulation proof"
+          ]
+        },
+        "resampling": {
+          "name": "resampling",
+          "status": "ok",
+          "score": null,
+          "confidence": 1.0,
+          "findings": [],
+          "metrics": {
+            "frames": 32,
+            "adjacent_signature_median": 64.12797546386719,
+            "adjacent_signature_mad": 15.651786804199219,
+            "duplicate_run": 1,
+            "interpolation_residual_median": 0.6343852234151174,
+            "interpolation_residual_mad": 0.15241768187138482,
+            "interpolation_event_count": 1,
+            "interpolation_event_indices": [
+              657
+            ],
+            "duplicate_residual_indices": [],
+            "diagnostic_score": 0.075,
+            "fusion_eligible": false,
+            "sampled_frame_indices": [
+              0,
+              15,
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              305,
+              321,
+              327,
+              351,
+              367,
+              375,
+              382,
+              399,
+              413,
+              428,
+              458,
+              474,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ]
+          },
+          "limitations": [
+            "resampling and duplicate residuals are diagnostics only; they are not manipulation claims"
+          ]
+        },
+        "codec": {
+          "name": "codec",
+          "status": "ok",
+          "score": 0.7,
+          "confidence": 1.0,
+          "findings": [
+            "irregular keyframe/GOP cadence detected"
+          ],
+          "metrics": {
+            "frames": 720,
+            "keyframe_count": 22,
+            "keyframe_indices": [
+              0,
+              22,
+              44,
+              112,
+              144,
+              172,
+              213,
+              258,
+              288,
+              302,
+              350,
+              397,
+              432,
+              484,
+              505,
+              526,
+              547,
+              576,
+              612,
+              644,
+              676,
+              686
+            ],
+            "gop_intervals": [
+              22.0,
+              22.0,
+              68.0,
+              32.0,
+              28.0,
+              41.0,
+              45.0,
+              30.0,
+              14.0,
+              48.0,
+              47.0,
+              35.0,
+              52.0,
+              21.0,
+              21.0,
+              21.0,
+              29.0,
+              36.0,
+              32.0,
+              32.0,
+              10.0
+            ],
+            "median_gop": 32.0,
+            "gop_interval_mad": 10.0,
+            "gop_interval_cv": 0.3125,
+            "timestamp_delta_jitter": 0.0,
+            "gop_irregularity_signal": 1.0,
+            "timestamp_irregularity_signal": 0.0,
+            "sampled_frame_indices": [
+              0,
+              15,
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              305,
+              321,
+              327,
+              351,
+              367,
+              375,
+              382,
+              399,
+              413,
+              428,
+              458,
+              474,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ]
+          },
+          "limitations": [
+            "GOP cadence is codec/container evidence, not proof of editing"
+          ]
+        },
+        "avsync": {
+          "name": "avsync",
+          "status": "ok",
+          "score": null,
+          "confidence": 0.0,
+          "findings": [],
+          "metrics": {
+            "video_start_time": 0.0,
+            "audio_start_time": 0.0,
+            "stream_start_offset": 0.0,
+            "video_duration": 30.0,
+            "audio_duration": 30.014,
+            "duration_delta": 0.013999999999999346,
+            "timing_support": 0.0,
+            "sampled_frame_indices": [
+              0,
+              15,
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              305,
+              321,
+              327,
+              351,
+              367,
+              375,
+              382,
+              399,
+              413,
+              428,
+              458,
+              474,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ]
+          },
+          "limitations": [
+            "audio/video timing is within normal muxing tolerance"
+          ]
+        },
+        "audio": {
+          "name": "audio",
+          "status": "ok",
+          "score": null,
+          "confidence": 0.0,
+          "findings": [],
+          "metrics": {
+            "decoder": "ffmpeg",
+            "sample_rate": 16000,
+            "channels": 1,
+            "duration_seconds": 30.013,
+            "windows": 120,
+            "median_rms": 0.06370563060045242,
+            "mad_rms": 0.0281530674546957,
+            "median_rms_jump": 0.36003885477290254,
+            "median_spectral_jump": 0.031619638371850556,
+            "rms_inconsistency": 1.0,
+            "spectral_inconsistency": 1.0,
+            "rms_jump_outlier_fraction": 0.025210084033613446,
+            "spectral_jump_outlier_fraction": 0.01680672268907563,
+            "discontinuity_support": 0.0,
+            "clipping_rate": 0.00036666666666666667,
+            "rms_outlier_fraction": 0.0,
+            "sampled_frame_indices": [
+              0,
+              15,
+              24,
+              30,
+              61,
+              76,
+              90,
+              107,
+              114,
+              122,
+              137,
+              152,
+              168,
+              198,
+              214,
+              229,
+              244,
+              260,
+              275,
+              305,
+              321,
+              327,
+              351,
+              367,
+              375,
+              382,
+              399,
+              413,
+              428,
+              458,
+              474,
+              489,
+              507,
+              520,
+              528,
+              550,
+              566,
+              570,
+              591,
+              596,
+              611,
+              633,
+              642,
+              657,
+              678,
+              687,
+              688,
+              719
+            ]
+          },
+          "limitations": []
+        }
+      }
+    },
+    "specialist_three_class_router": {
+      "status": "not_configured",
+      "enabled": false
+    },
+    "binary_authenticity_router": {
+      "status": "not_configured",
+      "enabled": false
+    },
+    "production_five_layer": {
+      "status": "available",
+      "mode": "production_five_layer_deterministic_projection",
+      "authoritative": false,
+      "layers": [
+        {
+          "id": "layer1_provenance",
+          "name": "Provenance and media integrity",
+          "score": 0.414791,
+          "evidence_branches": [
+            "provenance",
+            "codec",
+            "recompression"
+          ]
+        },
+        {
+          "id": "layer2_temporal",
+          "name": "Temporal and motion consistency",
+          "score": 0.125,
+          "evidence_branches": [
+            "temporal",
+            "scene",
+            "periodicity"
+          ]
+        },
+        {
+          "id": "layer3_face_integrity",
+          "name": "Face geometry and spatial integrity",
+          "score": 0.736491,
+          "evidence_branches": [
+            "face",
+            "integrity",
+            "spatial"
+          ]
+        },
+        {
+          "id": "layer4_frequency_audio",
+          "name": "Frequency, noise, and stream diagnostics",
+          "score": 0.498067,
+          "evidence_branches": [
+            "frequency",
+            "wavelet",
+            "audio",
+            "avsync"
+          ]
+        },
+        {
+          "id": "layer5_fusion",
+          "name": "Robust evidence fusion",
+          "score": 0.583045,
+          "evidence_branches": [
+            "fusion",
+            "stability",
+            "transcode_stability"
+          ]
+        }
+      ],
+      "label": "mixed-anomaly-signal",
+      "limitations": [
+        "Five-layer output is an explainable projection of deterministic evidence.",
+        "It is not a trained model prediction or calibrated probability."
+      ]
+    }
+  }
+}

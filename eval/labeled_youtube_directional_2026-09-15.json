@@ -1,0 +1,44 @@
+[
+  {
+    "name": "ai_oPFW3rnZ6cM",
+    "truth": "synthetic",
+    "directional_label": "synthetic",
+    "directional_score": 0.6435971870254316,
+    "directional_predicted": "positive"
+  },
+  {
+    "name": "ai_DbXBJzG8Hpo",
+    "truth": "synthetic",
+    "directional_label": "synthetic",
+    "directional_score": 0.8850516768048815,
+    "directional_predicted": "positive"
+  },
+  {
+    "name": "original_YpjwHazhknA",
+    "truth": "original",
+    "directional_label": "original",
+    "directional_score": 0.0,
+    "directional_predicted": "negative"
+  },
+  {
+    "name": "original_SfehNsOJcH0",
+    "truth": "original",
+    "directional_label": "original",
+    "directional_score": 0.0,
+    "directional_predicted": "negative"
+  },
+  {
+    "name": "deepfake_cQ54GDm1eL0",
+    "truth": "synthetic",
+    "directional_label": "synthetic",
+    "directional_score": 1.0,
+    "directional_predicted": "positive"
+  },
+  {
+    "name": "original_1KzHEPNmjU8",
+    "truth": "original",
+    "directional_label": "original",
+    "directional_score": 0.0,
+    "directional_predicted": "negative"
+  }
+]

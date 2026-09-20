@@ -1,0 +1,92 @@
+[
+  {
+    "name": "openai_sora",
+    "truth": "synthetic",
+    "status": "ok",
+    "report": "C:\\Temp\\neuroforge_unused6_2026-09-15\\openai_sora.json",
+    "ordinary_label": "mixed-anomaly-signal",
+    "ordinary_score": 0.529352,
+    "output_statuses": {
+      "deterministic_engine": "available",
+      "specialist_three_class_router": "not_configured",
+      "binary_authenticity_router": "not_configured",
+      "production_five_layer": "available"
+    },
+    "layer_count": 5
+  },
+  {
+    "name": "meta_movie_gen",
+    "truth": "synthetic",
+    "status": "ok",
+    "report": "C:\\Temp\\neuroforge_unused6_2026-09-15\\meta_movie_gen.json",
+    "ordinary_label": "high-anomaly-signal",
+    "ordinary_score": 0.67233,
+    "output_statuses": {
+      "deterministic_engine": "available",
+      "specialist_three_class_router": "not_configured",
+      "binary_authenticity_router": "not_configured",
+      "production_five_layer": "available"
+    },
+    "layer_count": 5
+  },
+  {
+    "name": "google_veo3",
+    "truth": "synthetic",
+    "status": "ok",
+    "report": "C:\\Temp\\neuroforge_unused6_2026-09-15\\google_veo3.json",
+    "ordinary_label": "mixed-anomaly-signal",
+    "ordinary_score": 0.583045,
+    "output_statuses": {
+      "deterministic_engine": "available",
+      "specialist_three_class_router": "not_configured",
+      "binary_authenticity_router": "not_configured",
+      "production_five_layer": "available"
+    },
+    "layer_count": 5
+  },
+  {
+    "name": "nasa_apollo_landing",
+    "truth": "original",
+    "status": "ok",
+    "report": "C:\\Temp\\neuroforge_unused6_2026-09-15\\nasa_apollo_landing.json",
+    "ordinary_label": "high-anomaly-signal",
+    "ordinary_score": 0.676962,
+    "output_statuses": {
+      "deterministic_engine": "available",
+      "specialist_three_class_router": "not_configured",
+      "binary_authenticity_router": "not_configured",
+      "production_five_layer": "available"
+    },
+    "layer_count": 5
+  },
+  {
+    "name": "noaa_titanic",
+    "truth": "original",
+    "status": "ok",
+    "report": "C:\\Temp\\neuroforge_unused6_2026-09-15\\noaa_titanic.json",
+    "ordinary_label": "mixed-anomaly-signal",
+    "ordinary_score": 0.587365,
+    "output_statuses": {
+      "deterministic_engine": "available",
+      "specialist_three_class_router": "not_configured",
+      "binary_authenticity_router": "not_configured",
+      "production_five_layer": "available"
+    },
+    "layer_count": 5
+  },
+  {
+    "name": "bbc_queen_broadcast",
+    "truth": "original",
+    "status": "ok",
+    "report": "C:\\Temp\\neuroforge_unused6_2026-09-15\\bbc_queen_broadcast.json",
+    "ordinary_label": "mixed-anomaly-signal",
+    "ordinary_score": 0.477089,
+    "output_statuses": {
+      "deterministic_engine": "available",
+      "specialist_three_class_router": "not_configured",
+      "binary_authenticity_router": "not_configured",
+      "production_five_layer": "available"
+    },
+    "layer_count": 5
+  }
+]

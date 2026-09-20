@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+*.avi
+*.mp4
+*.mov
+*.wav
+frontend/node_modules/
+frontend/dist/
