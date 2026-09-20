@@ -32,6 +32,10 @@ _DIRECTIONAL_NEGATIVE_CEILING = 0.30
 # manipulation on their own because ordinary encoding and scaling can produce
 # the same residuals.
 _QUALITY_SENSITIVE_GROUPS = frozenset({"codec"})
+# Wavelet instability is also strongly affected by bitrate, scaling, and
+# denoising. It is not sufficient to establish manipulation in face-free
+# footage when provenance already reports a global compression confounder.
+_NON_FACE_QUALITY_GROUPS = frozenset({"codec", "wavelet"})
 
 # Keep the historical evidence and later additions independently auditable.
 # ``resampling`` is intentionally included in the new view even though its
@@ -62,6 +66,11 @@ def fuse(branches: Dict[str, Dict[str, Any]], metadata: Any = None) -> Dict[str,
     quality = getattr(metadata, "quality_metrics", None) or (
         metadata.get("quality_metrics", {}) if isinstance(metadata, dict) else {})
     quality_confounder = bool(quality.get("global_compression_confounder"))
+    face_metrics = (branches.get("face") or {}).get("metrics") or {}
+    face_detection_frames = _finite_float(face_metrics.get("detection_frames"))
+    no_reliable_face_evidence = (
+        face_detection_frames is not None and face_detection_frames <= 0
+    )
     if quality_confounder:
         reason_codes.append("global-compression-confounder")
     for name, value in branches.items():
@@ -303,6 +312,15 @@ def fuse(branches: Dict[str, Dict[str, Any]], metadata: Any = None) -> Dict[str,
     )
     if quality_sensitive_only:
         reason_codes.append("quality-sensitive-evidence-only")
+    non_face_quality_only = bool(
+        no_reliable_face_evidence
+        and quality_confounder
+        and positive_groups
+        and all(group in _NON_FACE_QUALITY_GROUPS for group in positive_groups)
+    )
+    if non_face_quality_only:
+        reason_codes.append("non-face-quality-evidence-only")
+        abstain = True
     positive_consensus = []
     # A high codec-sensitive score plus low-signal non-codec groups is a
     # routine encoding/scaling artifact, not positive manipulation evidence.
@@ -349,12 +367,16 @@ def fuse(branches: Dict[str, Dict[str, Any]], metadata: Any = None) -> Dict[str,
     )
     if quality_confounder and not non_quality_branches:
         provisional_positive = False
+    if non_face_quality_only:
+        provisional_positive = False
     if provisional_positive:
         provisional_reason = "independent-groups-stable-consensus"
     elif independent < 2:
         provisional_reason = "fewer-than-two-independent-groups"
     elif quality_confounder and not non_quality_branches:
         provisional_reason = "quality-sensitive-evidence-only"
+    elif non_face_quality_only:
+        provisional_reason = "non-face-quality-evidence-only"
     elif coverage < 0.40:
         provisional_reason = "insufficient-supported-coverage"
     elif stable_anomaly_score < _CONSENSUS_SCORE_FLOOR:

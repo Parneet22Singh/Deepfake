@@ -85,6 +85,19 @@ def test_cross_system_reconciliation_agrees_only_with_deterministic_support():
     assert result["consensus"] == "synthetic"
 
 
+def test_reconciliation_preserves_explicit_fusion_abstention():
+    result = reconcile_analysis_outputs({
+        "deterministic_engine": {
+            "fusion": {
+                "score": 0.63,
+                "label": "abstain-insufficient-evidence",
+            },
+        },
+    })
+    assert result["status"] == "inconclusive"
+    assert result["decision"] == "review"
+
+
 def test_content_class_router_does_not_claim_authenticity_agreement():
     outputs = {
         "deterministic_engine": {
@@ -160,6 +173,24 @@ def test_routers_abstain_when_video_has_no_face_evidence():
         assert outputs[name]["status"] == "abstain"
         assert outputs[name]["label"] == "unknown"
         assert "No reliable face detections" in outputs[name]["abstention_reason"]
+
+
+def test_no_face_quality_evidence_does_not_establish_synthetic_signal():
+    result = fuse(
+        {
+            "face": {
+                "status": "ok",
+                "score": None,
+                "metrics": {"detection_frames": 0},
+            },
+            "codec": {"status": "ok", "score": 0.70},
+            "wavelet": {"status": "ok", "score": 0.62},
+            "temporal": {"status": "ok", "score": 0.24},
+        },
+        metadata={"quality_metrics": {"global_compression_confounder": True}},
+    )
+    assert result["label"] == "abstain-insufficient-evidence"
+    assert "non-face-quality-evidence-only" in result["reason_codes"]
 
 
 def test_forced_threshold_view_separates_from_conservative_abstention():

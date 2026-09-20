@@ -296,9 +296,17 @@ def reconcile_analysis_outputs(outputs: Mapping[str, Any]) -> dict[str, Any]:
     score = _finite_score(fusion.get("score"))
     fusion_label = str(fusion.get("label") or "")
     deterministic_signal = (
-        "synthetic" if fusion_label == "high-anomaly-signal" or (score is not None and score >= 0.62)
-        else "original" if fusion_label == "low-anomaly-signal" or (score is not None and score < 0.30)
-        else "uncertain"
+        "uncertain"
+        if fusion_label.startswith("abstain-")
+        else (
+            "synthetic"
+            if fusion_label == "high-anomaly-signal"
+            or (score is not None and score >= 0.62)
+            else "original"
+            if fusion_label == "low-anomaly-signal"
+            or (score is not None and score < 0.30)
+            else "uncertain"
+        )
     )
     sources: dict[str, str] = {"deterministic_engine": deterministic_signal}
     specialist = outputs.get("specialist_three_class_router") or {}
