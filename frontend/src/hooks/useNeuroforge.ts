@@ -231,11 +231,23 @@ export function useNeuroforge() {
     return message;
   };
 
-  const normalizeLocalReport = (report: Record<string, any>, sourceName: string): AnalysisResult => {
-    const outputs = report.analysis_outputs || {};
-    const fusion = report.fusion || {};
+  const normalizeLocalReport = (report: Record<string, unknown>, sourceName: string): AnalysisResult => {
+    const outputs = (report.analysis_outputs && typeof report.analysis_outputs === "object"
+      ? report.analysis_outputs
+      : {}) as AnalysisOutputs;
+    const fusion = (report.fusion && typeof report.fusion === "object"
+      ? report.fusion
+      : {}) as Record<string, unknown>;
     const score = typeof fusion.score === "number" ? fusion.score : 0;
-    const branches = report.branches || {};
+    const branches = report.branches && typeof report.branches === "object"
+      ? report.branches as Record<string, { score?: unknown }>
+      : {};
+    const metadata = report.metadata && typeof report.metadata === "object"
+      ? report.metadata as Record<string, unknown>
+      : {};
+    const qualityMetrics = metadata.quality_metrics && typeof metadata.quality_metrics === "object"
+      ? metadata.quality_metrics as Record<string, unknown>
+      : {};
     const layerNames = [
       ["Provenance and media integrity", ["provenance", "codec", "recompression"]],
       ["Temporal and motion consistency", ["temporal", "scene", "periodicity"]],
@@ -267,7 +279,13 @@ export function useNeuroforge() {
       marginOfError: 0,
       confidenceLevel: "Moderate",
       reliabilityScore: Math.round((Number(fusion.evidence_coverage || 0) * 10) * 10) / 10,
-      crossLayerConsistency: Number(fusion.group_consensus?.consensus_fraction || 0),
+      crossLayerConsistency: Number(
+        (fusion.group_consensus &&
+        typeof fusion.group_consensus === "object" &&
+        "consensus_fraction" in fusion.group_consensus
+          ? fusion.group_consensus.consensus_fraction
+          : 0) || 0
+      ),
       modelNonDeepfakeProbability: 1 - score,
       selfConsistencyValidation: "Passed",
       adversarialShift: 0,
@@ -276,7 +294,14 @@ export function useNeuroforge() {
       biasLog: "Compression and codec signals remain diagnostic, not decisive.",
       modelVersion: report.schema_version || "deterministic-forensic-engine",
       calibrationSource: "No learned calibration; deterministic evidence only",
-      traceId: report.metadata?.sha256 || sourceName,
+      traceId: (
+        report.metadata &&
+        typeof report.metadata === "object" &&
+        "sha256" in report.metadata &&
+        typeof report.metadata.sha256 === "string"
+          ? report.metadata.sha256
+          : sourceName
+      ),
       timestamp: new Date().toISOString(),
       layers,
       fusionEngine: {
@@ -291,10 +316,10 @@ export function useNeuroforge() {
       },
       timeline: [],
       provenance: {
-        estimated_reencoding_generations: Number(report.metadata?.quality_metrics?.estimated_reencoding_generations || 0),
-        compression_artifact_layers: Number(report.metadata?.quality_metrics?.compression_artifact_layers || 0),
-        original_quality_estimate: String(report.metadata?.quality_metrics?.original_quality_estimate || "unknown"),
-        quantization_table_anomaly: Boolean(report.metadata?.quality_metrics?.quantization_table_anomaly),
+        estimated_reencoding_generations: Number(qualityMetrics.estimated_reencoding_generations || 0),
+        compression_artifact_layers: Number(qualityMetrics.compression_artifact_layers || 0),
+        original_quality_estimate: String(qualityMetrics.original_quality_estimate || "unknown"),
+        quantization_table_anomaly: Boolean(qualityMetrics.quantization_table_anomaly),
       },
       enhancedAudio: { metrics: {}, processing_time_ms: 0 },
       videoUrl: sourceName,
@@ -304,13 +329,15 @@ export function useNeuroforge() {
       social: { x: "", redditTitle: "", redditBody: "", instagram: "", linkedin: "" },
       decisionStatus: "verdict",
       analysis_outputs: outputs,
-      analysis_reconciliation: report.analysis_reconciliation,
+      analysis_reconciliation: report.analysis_reconciliation as AnalysisResult["analysis_reconciliation"],
       deterministicReport: {
-        metadata: report.metadata,
-        sampling: report.sampling,
+        metadata: report.metadata as AnalysisResult["deterministicReport"]["metadata"],
+        sampling: report.sampling as AnalysisResult["deterministicReport"]["sampling"],
         branches,
         fusion,
-        warnings: report.warnings || [],
+        warnings: Array.isArray(report.warnings)
+          ? report.warnings.filter((warning): warning is string => typeof warning === "string")
+          : [],
       },
     };
   };
