@@ -8,6 +8,7 @@ protected snapshot without copying or modifying checkpoint files.
 from __future__ import annotations
 
 import importlib.util
+import multiprocessing
 import os
 import sys
 from pathlib import Path
@@ -23,6 +24,7 @@ DEFAULT_SNAPSHOT_ROOT = (
 ROUTER_MIN_CONFIDENCE = 0.70
 ROUTER_MIN_MARGIN = 0.15
 _TORCHVISION_COMPAT_LIBRARY: Any = None
+DEFAULT_ROUTER_TIMEOUT_SECONDS = 0.0
 
 
 def _finite_score(value: Any) -> Optional[float]:
@@ -176,6 +178,54 @@ def _prepare_torchvision_compatibility() -> None:
         return
 
 
+def _router_process_entry(
+    connection: Any,
+    frames: Sequence[Any],
+    root: str,
+    specialist: Optional[str],
+    binary: Optional[str],
+) -> None:
+    """Run optional native-model code in a process that can be killed safely."""
+    if os.name == "nt":
+        # Prevent the Windows loader from displaying a native DLL error dialog.
+        import ctypes
+
+        ctypes.windll.kernel32.SetErrorMode(0x0001 | 0x0002 | 0x8000)
+    try:
+        _prepare_torchvision_compatibility()
+        helper = _load_snapshot_router(root)
+        outputs: dict[str, Any] = {}
+        if specialist:
+            outputs["specialist_three_class_router"] = _apply_router_policy(
+                helper.classify_with_router(list(frames), _safe_checkpoint(specialist, root))
+            )
+        else:
+            outputs["specialist_three_class_router"] = {
+                "status": "not_configured", "enabled": False
+            }
+        if binary:
+            outputs["binary_authenticity_router"] = _apply_router_policy(
+                helper.classify_with_general_model(list(frames), _safe_checkpoint(binary, root))
+            )
+        else:
+            outputs["binary_authenticity_router"] = {
+                "status": "not_configured", "enabled": False
+            }
+        connection.send(("ok", outputs))
+    except BaseException as exc:  # native libraries can raise non-standard exceptions
+        connection.send(("error", f"{type(exc).__name__}: {exc}"))
+    finally:
+        connection.close()
+
+
+def _router_error_outputs(message: str) -> dict[str, Any]:
+    error = {"status": "error", "enabled": False, "error": message}
+    return {
+        "specialist_three_class_router": dict(error),
+        "binary_authenticity_router": dict(error),
+    }
+
+
 def run_optional_routers(
     frames: Sequence[Any],
     *,
@@ -194,28 +244,45 @@ def run_optional_routers(
         }
     if not Path(root).is_absolute():
         raise ValueError("NEUROFORGE_PRODUCTION_SNAPSHOT_ROOT must be absolute")
-    _prepare_torchvision_compatibility()
-    helper = _load_snapshot_router(root)
-    outputs: dict[str, Any] = {}
-    if specialist:
-        safe_path = _safe_checkpoint(specialist, root)
-        outputs["specialist_three_class_router"] = _apply_router_policy(
-            helper.classify_with_router(list(frames), safe_path)
-        )
-    else:
-        outputs["specialist_three_class_router"] = {
-            "status": "not_configured", "enabled": False
-        }
-    if binary:
-        safe_path = _safe_checkpoint(binary, root)
-        outputs["binary_authenticity_router"] = _apply_router_policy(
-            helper.classify_with_general_model(list(frames), safe_path)
-        )
-    else:
-        outputs["binary_authenticity_router"] = {
-            "status": "not_configured", "enabled": False
-        }
-    return outputs
+    timeout_value = os.getenv(
+        "NEUROFORGE_ROUTER_TIMEOUT_SECONDS",
+        str(DEFAULT_ROUTER_TIMEOUT_SECONDS),
+    ).strip().lower()
+    unlimited = timeout_value in {"0", "none", "unlimited", "off"}
+    timeout = 0.0 if unlimited else float(timeout_value)
+    if timeout < 0:
+        raise ValueError("NEUROFORGE_ROUTER_TIMEOUT_SECONDS must be non-negative")
+    parent, child = multiprocessing.get_context("spawn").Pipe(duplex=False)
+    process = multiprocessing.get_context("spawn").Process(
+        target=_router_process_entry,
+        args=(child, list(frames), root, specialist, binary),
+        daemon=True,
+    )
+    process.start()
+    child.close()
+    try:
+        if not unlimited and not parent.poll(timeout):
+            process.terminate()
+            process.join(2)
+            return _router_error_outputs(
+                f"optional routers timed out after {timeout:g} seconds"
+            )
+        if unlimited:
+            process.join()
+        try:
+            status, payload = parent.recv()
+        except (EOFError, OSError) as exc:
+            return _router_error_outputs(
+                f"optional router process exited without a result: {exc}"
+            )
+        if status == "ok":
+            return payload
+        return _router_error_outputs(str(payload))
+    finally:
+        parent.close()
+        if process.is_alive():
+            process.terminate()
+        process.join(2)
 
 
 def build_analysis_outputs(
@@ -233,7 +300,7 @@ def build_analysis_outputs(
     except (TypeError, ValueError):
         face_detection_frames = 0
     configured_root = snapshot_root or os.getenv("NEUROFORGE_PRODUCTION_SNAPSHOT_ROOT", "")
-    if configured_root and face_detection_frames <= 0:
+    if configured_root and face_detection_frames < 4:
         no_face_router = {
             "status": "abstain",
             "enabled": True,
@@ -241,8 +308,9 @@ def build_analysis_outputs(
             "confidence": None,
             "margin": None,
             "abstention_reason": (
-                "No reliable face detections were found in the sampled video; "
-                "face-dependent routers are not applicable."
+                "No reliable face detections: fewer than four repeated face-like "
+                "observations were found in the sampled video; face-dependent "
+                "routers are not applicable."
             ),
             "router_policy": {
                 "minimum_confidence": ROUTER_MIN_CONFIDENCE,

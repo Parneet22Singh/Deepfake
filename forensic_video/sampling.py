@@ -46,11 +46,16 @@ def _motion_candidates(capture, count: int) -> List[Tuple[int, float]]:
     import cv2  # type: ignore
     previous = None
     result: List[Tuple[int, float]] = []
+    stride = max(1, count // 120)
     for index in range(count):
-        ok, frame = capture.read()
+        if index % stride:
+            ok = capture.grab()
+            frame = None
+        else:
+            ok, frame = capture.read()
         if not ok:
             break
-        if index % max(1, count // 240) != 0:
+        if frame is None:
             continue
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         gray = cv2.resize(gray, (64, 36), interpolation=cv2.INTER_AREA)

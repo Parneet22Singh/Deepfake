@@ -19,11 +19,19 @@ def detect_scene_cuts(path: str, threshold: float = 0.35) -> Dict[str, Any]:
         return {"status": "unavailable", "cuts": [], "metrics": {}, "warnings": ["opencv could not open input"]}
     previous = None
     index = -1
+    frame_count = int(capture.get(cv2.CAP_PROP_FRAME_COUNT) or 0)
+    stride = max(1, frame_count // 120)
     while True:
-        ok, frame = capture.read()
+        index += 1
+        if index % stride:
+            ok = capture.grab()
+            frame = None
+        else:
+            ok, frame = capture.read()
         if not ok:
             break
-        index += 1
+        if frame is None:
+            continue
         small = cv2.resize(frame, (64, 36), interpolation=cv2.INTER_AREA)
         hsv = cv2.cvtColor(small, cv2.COLOR_BGR2HSV)
         hist = cv2.calcHist([hsv], [0, 1], None, [16, 8], [0, 180, 0, 256])

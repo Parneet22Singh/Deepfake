@@ -21,7 +21,7 @@ def analyze_codec(path: str) -> Dict[str, Any]:
     try:
         completed = subprocess.run(command, stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE, text=True,
-                                   check=False, timeout=30)
+                                   check=False, timeout=5)
         payload = json.loads(completed.stdout) if completed.returncode == 0 else {}
         frames = payload.get("frames", [])
     except (OSError, subprocess.SubprocessError, ValueError, TypeError):

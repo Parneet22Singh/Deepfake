@@ -54,7 +54,7 @@ export const LayerCard = ({ layer, index }: LayerCardProps) => {
           </div>
           <div className="flex items-center gap-3">
             <span className={`font-display text-2xl font-bold ${COLOR_MAP[layer.color]}`}>
-              {(layer.score * 100).toFixed(0)}%
+              {typeof layer.score === "number" ? `${(layer.score * 100).toFixed(0)}%` : "n/a"}
             </span>
             {expanded ? (
               <ChevronUp className="w-5 h-5 text-muted-foreground" />
@@ -67,7 +67,7 @@ export const LayerCard = ({ layer, index }: LayerCardProps) => {
         <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
-            animate={{ width: `${layer.score * 100}%` }}
+            animate={{ width: `${typeof layer.score === "number" ? layer.score * 100 : 0}%` }}
             transition={{ delay: 0.5 + index * 0.15, duration: 0.8 }}
             className={`h-full rounded-full ${BAR_COLOR_MAP[layer.color]}`}
           />
@@ -85,6 +85,11 @@ export const LayerCard = ({ layer, index }: LayerCardProps) => {
               <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
                 {layer.explanation}
               </p>
+              {layer.score == null && (
+                <p className="mt-3 text-xs font-mono text-muted-foreground/70">
+                  No usable score was produced for this layer because its contributing evidence branches did not return an authenticity score for this video.
+                </p>
+              )}
 
               <div className="grid grid-cols-2 gap-3 mt-4">
                 {Object.entries(layer.metrics).map(([key, value]) => (
@@ -104,7 +109,7 @@ export const LayerCard = ({ layer, index }: LayerCardProps) => {
               <div className="mt-4 h-16 flex items-end gap-0.5 overflow-hidden rounded-lg bg-muted/30 p-2">
                 {Array.from({ length: 40 }).map((_, i) => {
                   const metricValues = Object.values(layer.metrics).filter((value): value is number => typeof value === "number");
-                  const source = metricValues[i % Math.max(1, metricValues.length)] ?? layer.score;
+                  const source = metricValues[i % Math.max(1, metricValues.length)] ?? layer.score ?? 0;
                   const height = 20 + Math.min(60, Math.max(0, Math.abs(source) * 60));
                   return (
                     <motion.div

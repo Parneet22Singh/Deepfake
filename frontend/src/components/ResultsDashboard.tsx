@@ -93,9 +93,6 @@ const MetaBadges = ({ result }: { result: AnalysisResult }) => (
       {result.confidenceLevel === "High" ? <CheckCircle className="w-3 h-3" /> : <AlertTriangle className="w-3 h-3" />}
       {result.confidenceLevel} Confidence
     </span>
-    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-p300/30 text-p300 bg-p300/10">
-      {result.reliabilityScore}/10 Reliability
-    </span>
     <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border ${
       result.selfConsistencyValidation === "Passed" ? "border-theta/30 text-theta bg-theta/10" :
       "border-[hsl(var(--neural-amber)/0.3)] text-[hsl(var(--neural-amber))] bg-[hsl(var(--neural-amber)/0.1)]"
@@ -199,12 +196,16 @@ const AdversarialSection = ({ result }: { result: AnalysisResult }) => (
     <div className="grid grid-cols-2 gap-3 text-xs font-mono">
       <div className="bg-muted/30 rounded-lg p-3">
         <p className="text-muted-foreground mb-1">Top anomaly removed</p>
-        <p className="text-foreground font-bold">{result.adversarialTests.topAnomalyRemoved.toFixed(1)}%</p>
+        <p className="text-foreground font-bold">
+          {result.adversarialTests.topAnomalyRemoved == null ? "Not measured" : `${result.adversarialTests.topAnomalyRemoved.toFixed(1)}%`}
+        </p>
         <p className="text-muted-foreground/60 text-[10px] mt-1">deterministic branch perturbation</p>
       </div>
       <div className="bg-muted/30 rounded-lg p-3">
         <p className="text-muted-foreground mb-1">Compression removed</p>
-        <p className="text-foreground font-bold">{result.adversarialTests.compressionRemoved.toFixed(1)}%</p>
+        <p className="text-foreground font-bold">
+          {result.adversarialTests.compressionRemoved == null ? "Not measured" : `${result.adversarialTests.compressionRemoved.toFixed(1)}%`}
+        </p>
         <p className="text-muted-foreground/60 text-[10px] mt-1">deterministic branch perturbation</p>
       </div>
     </div>
@@ -374,12 +375,16 @@ const VideoProvenance = ({ provenance, gan }: { provenance: ProvenanceData; gan:
         </div>
         <div className="flex justify-between">
           <span className="text-muted-foreground">Re-encoding Gens</span>
-          <span className="text-foreground">{provenance.estimated_reencoding_generations}</span>
+          <span className="text-foreground">{provenance.estimated_reencoding_generations ?? "Not measured"}</span>
         </div>
         <div className="flex justify-between">
           <span className="text-muted-foreground">Quantization Anomaly</span>
-          <span className={provenance.quantization_table_anomaly ? "text-shred" : "text-theta"}>
-            {provenance.quantization_table_anomaly ? "DETECTED" : "NONE"}
+          <span className={provenance.quantization_table_anomaly == null
+            ? "text-muted-foreground"
+            : provenance.quantization_table_anomaly ? "text-shred" : "text-theta"}>
+            {provenance.quantization_table_anomaly == null
+              ? "Not measured"
+              : provenance.quantization_table_anomaly ? "DETECTED" : "NONE"}
           </span>
         </div>
       </div>
@@ -396,11 +401,11 @@ const VideoProvenance = ({ provenance, gan }: { provenance: ProvenanceData; gan:
         </div>
         <div className="flex justify-between">
           <span className="text-muted-foreground">Spectral Score</span>
-          <span className="text-foreground">{(gan.confidence * 100).toFixed(1)}%</span>
+          <span className="text-foreground">{gan.confidence == null ? "Not measured" : `${(gan.confidence * 100).toFixed(1)}%`}</span>
         </div>
         <div className="flex justify-between">
           <span className="text-muted-foreground">HF Energy Ratio</span>
-          <span className="text-foreground">{gan.hf_energy_ratio.toFixed(3)}</span>
+          <span className="text-foreground">{gan.hf_energy_ratio == null ? "Not measured" : gan.hf_energy_ratio.toFixed(3)}</span>
         </div>
       </div>
     </div>
@@ -467,8 +472,13 @@ const AnalysisOutputsPanel = ({ outputs }: { outputs?: AnalysisOutputs }) => {
                       <span>{typeof layer.score === "number" ? `${(layer.score * 100).toFixed(1)}%` : "n/a"}</span>
                     </div>
                     <div className="mt-1 h-1 rounded-full bg-muted overflow-hidden">
-                      <div className="h-full bg-p300" style={{ width: `${Math.max(0, Math.min(100, (layer.score || 0) * 100))}%` }} />
+                      <div className="h-full bg-p300" style={{ width: `${typeof layer.score === "number" ? Math.max(0, Math.min(100, layer.score * 100)) : 0}%` }} />
                     </div>
+                    {layer.score == null && (
+                      <p className="mt-1 text-[9px] font-mono text-muted-foreground/70">
+                        No usable score from {layer.evidence_branches.join(", ")} for this video.
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
@@ -496,7 +506,9 @@ const ScoreSummary = ({ label, value }: { label: string; value?: number | null }
     <p className="mt-1 font-display text-lg text-foreground">
       {typeof value === "number" ? `${(value * 100).toFixed(1)}%` : "n/a"}
     </p>
-    <p className="text-[9px] font-mono text-muted-foreground/70">score, not probability</p>
+    <p className="text-[9px] font-mono text-muted-foreground/70">
+      {typeof value === "number" ? "score, not probability" : "No score was produced for this output."}
+    </p>
   </div>
 );
 
@@ -520,6 +532,11 @@ const DeterministicEvidencePanel = ({ result }: { result: AnalysisResult }) => {
               {typeof branch.score === "number" ? `${(branch.score * 100).toFixed(1)}%` : "n/a"}
             </p>
             {branch.findings?.[0] && <p className="mt-1 text-[10px] leading-4 text-muted-foreground">{branch.findings[0]}</p>}
+            {branch.score == null && (branch.limitations?.[0] || branch.warnings?.[0]) && (
+              <p className="mt-1 text-[9px] leading-4 text-muted-foreground/70">
+                {branch.limitations?.[0] || branch.warnings?.[0]}
+              </p>
+            )}
           </div>
         ))}
       </div>
@@ -613,7 +630,20 @@ export const ResultsDashboard = ({ result, youtubeUrl, onReset }: ResultsDashboa
         {result.provenance && (
            <VideoProvenance 
              provenance={result.provenance} 
-             gan={(result.layers[2]?.metrics as unknown as { gan_fingerprint: GanFingerprint })?.gan_fingerprint || { spectral_signature_class: "No Anomalies", confidence: 0, hf_energy_ratio: 0 }} 
+             gan={(() => {
+               const frequency = result.deterministicReport?.branches?.frequency;
+               const metrics = frequency?.metrics || {};
+               const score = typeof frequency?.score === "number" ? frequency.score : null;
+               const hfRatio = typeof metrics.median_high_frequency_ratio === "number"
+                 ? metrics.median_high_frequency_ratio
+                 : null;
+               const status = frequency?.status || "unavailable";
+               return {
+                 spectral_signature_class: frequency?.label || `Status: ${status}`,
+                 confidence: score,
+                 hf_energy_ratio: hfRatio,
+               };
+             })()}
            />
         )}
 

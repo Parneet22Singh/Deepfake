@@ -1,9 +1,13 @@
 # forensic-video
 
 `forensic-video` is a deterministic, classical-computer-vision video-forensics
-package and JSON CLI. It does **not** download media, train models, use model
-checkpoints, or claim to identify a fake. It reports reproducible evidence
-signals and limitations for human review. A score is an anomaly signal, not a
+package and JSON CLI. Its authoritative engine does not train models and
+reports reproducible evidence signals and limitations for human review. The
+repository can also invoke the separately trained specialist and binary
+authenticity routers from the protected production snapshot as advisory
+outputs. Those routers are trained ML models built from custom forensic data
+and FaceForensics-derived and related datasets; their checkpoints are not
+copied into this repository. A score is an anomaly signal, not a calibrated
 probability that a video is manipulated.
 
 ## Install and run
@@ -22,7 +26,7 @@ five-layer production-structure projection. The router outputs are disabled
 unless explicitly configured and never replace deterministic fusion.
 
 The protected production snapshot can be used without copying or modifying
-its checkpoints. All configured paths must be absolute and inside the
+its trained checkpoints. All configured paths must be absolute and inside the
 snapshot root:
 
 ```powershell
@@ -34,13 +38,20 @@ python -m forensic_video input.mp4 `
 
 If PyTorch or the protected snapshot's training dependencies are unavailable,
 the report keeps the router outputs explicit with `status: "error"` and
-preserves the deterministic result. An optional local-file API is available
+preserves the deterministic result. Router execution is isolated in a bounded
+child process so an incompatible Torch/TorchVision native binary cannot block
+or crash the deterministic API process. When the protected snapshot and both
+checkpoints are present at the standard sibling path, the API discovers and
+initializes the routers automatically. Set `NEUROFORGE_ENABLE_ROUTERS=0` to
+disable optional router execution explicitly.
+An optional local-file API is available
 with `pip install -e ".[video,api]"` and `uvicorn forensic_video.api:app`.
 
 ### Integrated frontend
 
-The `frontend/` application supports both the existing YouTube backend and the
-deterministic local-file API. To use local video uploads, start the API:
+The `frontend/` application uses the deterministic API for both local video
+uploads and YouTube URLs. Install the API extra (which includes `yt-dlp`) and
+start the API:
 
 ```powershell
 python -m pip install -e ".[video,api]"
@@ -48,14 +59,28 @@ python -m uvicorn forensic_video.api:app --host 127.0.0.1 --port 8000
 ```
 
 Run the frontend with `VITE_FORENSICS_API_URL=http://localhost:8000` in its
-environment. Its **Analyze Local Video** control uploads a video to `/analyze`
-and renders deterministic branch evidence, authoritative fusion, both optional
-router outputs, and the explainable five-layer production projection. Router
-outputs remain advisory: they show `not_configured` unless the protected
-snapshot root and absolute checkpoint paths are configured, and report explicit
-errors when inference dependencies are unavailable. Configure allowed frontend
-origins with `NEUROFORGE_CORS_ORIGINS` when the default localhost origins are
-not sufficient.
+environment. The local upload control sends a file to `/analyze`; a YouTube
+URL sends `youtube_url` to the same endpoint, where the API downloads one
+video with `yt-dlp`, analyzes the temporary file, and removes it afterward.
+The frontend renders deterministic branch evidence, authoritative fusion, both
+optional router outputs, and the explainable five-layer production projection.
+When the protected snapshot is present at the standard sibling path
+`The-Neuroforge-production-final-year-snapshot-2026-09-10`, the API discovers
+its trained router checkpoints automatically. Explicit environment variables
+can override that discovery for another installation. Set
+`NEUROFORGE_ENABLE_ROUTERS=0` when running without the protected snapshot or
+without a compatible Torch/TorchVision installation. If the routers cannot
+produce a result, the report says whether they abstained because no face
+evidence was available or failed during isolated execution; `not_configured`
+is reserved for missing checkpoint configuration.
+Router execution waits for the protected models to finish by default, so a
+slow model startup or inference run is not silently excluded. Set
+`NEUROFORGE_ROUTER_TIMEOUT_SECONDS` to a positive number when an operator
+explicitly wants a hard cap; `0`, `none`, `unlimited`, and `off` mean no cap.
+An incompatible native model process may therefore remain running until it is
+stopped by the operator when no cap is configured.
+Configure allowed frontend origins with `NEUROFORGE_CORS_ORIGINS` when
+the default localhost origins are not sufficient.
 
 The minimum install includes NumPy. OpenCV is optional; without it provenance
 and a graceful `unavailable` report are still emitted. The output has stable
@@ -270,8 +295,10 @@ Remove-Item -Recurse -Force eval
 ```
 
 `ffprobe` is optional: without it, GOP and stream-timing branches abstain.
-No branch is a trained detector, and no score is a probability or a claim that
-the source is fake. A useful evaluation compares rank separation and
+The deterministic branches are not trained detectors, and no deterministic
+score is a probability or a claim that the source is fake. The optional
+routers are trained models but remain advisory and are gated for confidence
+and margin. A useful evaluation compares rank separation and
 false-positive behavior against a prior implementation on the same downloaded
 bytes; improvement on these seven labels alone can still be overfitting.
 

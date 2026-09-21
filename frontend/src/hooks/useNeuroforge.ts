@@ -8,6 +8,9 @@ export interface ForensicOutput {
   authoritative?: boolean;
   label?: string | null;
   score?: number | null;
+  findings?: string[];
+  limitations?: string[];
+  warnings?: string[];
   [key: string]: unknown;
 }
 
@@ -40,7 +43,7 @@ export interface AnalysisReconciliation {
 
 export interface LayerData {
   name: string;
-  score: number;
+  score: number | null;
   stdDev: number;
   explanation: string;
   color: string;
@@ -107,15 +110,15 @@ export interface TimelineEntry {
 
 export interface GanFingerprint {
   spectral_signature_class: string;
-  confidence: number;
-  hf_energy_ratio: number;
+  confidence: number | null;
+  hf_energy_ratio: number | null;
 }
 
 export interface ProvenanceData {
-  estimated_reencoding_generations: number;
-  compression_artifact_layers: number;
+  estimated_reencoding_generations: number | null;
+  compression_artifact_layers: number | null;
   original_quality_estimate: string;
-  quantization_table_anomaly: boolean;
+  quantization_table_anomaly: boolean | null;
 }
 
 export interface AnalysisResult {
@@ -129,7 +132,7 @@ export interface AnalysisResult {
   interpretationError?: string | null;
   selfConsistencyValidation: "Passed" | "Review Recommended";
   adversarialShift: number;
-  adversarialTests: { topAnomalyRemoved: number; compressionRemoved: number };
+  adversarialTests: { topAnomalyRemoved: number | null; compressionRemoved: number | null };
   compressionBiasDetected: boolean;
   biasLog: string;
   modelVersion: string;
@@ -216,7 +219,11 @@ export function useNeuroforge() {
   const parseAnalysisError = (rawMessage: string): string => {
     const message = rawMessage || "Analysis failed. Please try again.";
 
-    if (message.includes("Sign in to confirm you’re not a bot") || message.includes("Sign in to confirm you're not a bot")) {
+    if (message === "Failed to fetch" || message.includes("NetworkError")) {
+      return "The local forensic API is unreachable. Start the backend at http://127.0.0.1:8000 and retry.";
+    }
+
+    if (message.includes("Sign in to confirm youâ€™re not a bot") || message.includes("Sign in to confirm you're not a bot")) {
       return "YouTube blocked automated download on the forensic backend. Refresh the service cookies and redeploy the forensic service, then retry.";
     }
 
@@ -232,22 +239,54 @@ export function useNeuroforge() {
   };
 
   const normalizeLocalReport = (report: Record<string, unknown>, sourceName: string): AnalysisResult => {
-    const outputs = (report.analysis_outputs && typeof report.analysis_outputs === "object"
+    const rawOutputs = (report.analysis_outputs && typeof report.analysis_outputs === "object"
       ? report.analysis_outputs
       : {}) as AnalysisOutputs;
     const fusion = (report.fusion && typeof report.fusion === "object"
       ? report.fusion
       : {}) as Record<string, unknown>;
     const score = typeof fusion.score === "number" ? fusion.score : 0;
+    const outputs: AnalysisOutputs = {
+      ...rawOutputs,
+      deterministic_engine: {
+        ...(rawOutputs.deterministic_engine || {}),
+        status: rawOutputs.deterministic_engine?.status || "available",
+        authoritative: true,
+        label: typeof fusion.label === "string" ? fusion.label : null,
+        score,
+        fusion,
+      },
+      directional_analysis: {
+        ...(rawOutputs.directional_analysis || {}),
+        status: rawOutputs.directional_analysis?.status || "available",
+        label: rawOutputs.directional_analysis?.label
+          || rawOutputs.directional_analysis?.directional_label
+          || null,
+        score: typeof rawOutputs.directional_analysis?.score === "number"
+          ? rawOutputs.directional_analysis.score
+          : null,
+      },
+      production_five_layer: {
+        ...(rawOutputs.production_five_layer || {}),
+        status: rawOutputs.production_five_layer?.status || "available",
+      },
+    };
     const branches = report.branches && typeof report.branches === "object"
       ? report.branches as Record<string, { score?: unknown }>
       : {};
     const metadata = report.metadata && typeof report.metadata === "object"
       ? report.metadata as Record<string, unknown>
       : {};
+    const localization = report.localization && typeof report.localization === "object"
+      ? report.localization as Record<string, unknown>
+      : {};
     const qualityMetrics = metadata.quality_metrics && typeof metadata.quality_metrics === "object"
       ? metadata.quality_metrics as Record<string, unknown>
       : {};
+    const frequencyBranch = branches.frequency as { score?: unknown; metrics?: Record<string, unknown> } | undefined;
+    const frequencyMetrics = frequencyBranch?.metrics || {};
+    const numericMetric = (value: unknown): number | null =>
+      typeof value === "number" && Number.isFinite(value) ? value : null;
     const layerNames = [
       ["Provenance and media integrity", ["provenance", "codec", "recompression"]],
       ["Temporal and motion consistency", ["temporal", "scene", "periodicity"]],
@@ -262,7 +301,9 @@ export function useNeuroforge() {
           return typeof value === "number" ? value : null;
         })
         .filter((value): value is number => value !== null);
-      const layerScore = index === 4 ? score : values.length ? values.reduce((a, b) => a + b, 0) / values.length : 0;
+      const layerScore = index === 4
+        ? score
+        : values.length ? values.reduce((a, b) => a + b, 0) / values.length : null;
       return {
         name,
         score: layerScore,
@@ -274,6 +315,42 @@ export function useNeuroforge() {
       };
     });
     const label = typeof fusion.label === "string" ? fusion.label : "deterministic-analysis";
+    const branchScores = new Map(
+      Object.entries(branches).map(([branchName, branch]) => [
+        branchName,
+        numericMetric(branch.score),
+      ]),
+    );
+    const localizedEvents = Array.isArray(localization.events)
+      ? localization.events
+        .filter((event): event is Record<string, unknown> => Boolean(event) && typeof event === "object")
+        .map((event) => {
+          const timestamp = numericMetric(event.timestamp_seconds);
+          const branchName = typeof event.branch === "string" ? event.branch : "diagnostic";
+          return timestamp === null
+            ? null
+            : {
+                frame_idx: Math.max(0, Math.round(numericMetric(event.frame_index) || 0)),
+                timestamp_s: timestamp,
+                manipulation_probability: branchScores.get(branchName) ?? score,
+                dominant_signal: typeof event.kind === "string" ? event.kind : "diagnostic",
+                evidence_scope: branchName,
+              };
+        })
+        .filter((event): event is TimelineEntry => event !== null)
+      : [];
+    const localizedDuration = numericMetric(localization.duration_seconds);
+    const timeline = localizedEvents.length
+      ? localizedEvents
+      : localizedDuration !== null
+        ? [{
+            frame_idx: 0,
+            timestamp_s: localizedDuration,
+            manipulation_probability: score,
+            dominant_signal: "clip-wide fusion",
+            evidence_scope: "full analyzed duration",
+          }]
+        : [];
     return {
       verdictPercent: score * 100,
       marginOfError: 0,
@@ -289,7 +366,7 @@ export function useNeuroforge() {
       modelNonDeepfakeProbability: 1 - score,
       selfConsistencyValidation: "Passed",
       adversarialShift: 0,
-      adversarialTests: { topAnomalyRemoved: 0, compressionRemoved: 0 },
+      adversarialTests: { topAnomalyRemoved: null, compressionRemoved: null },
       compressionBiasDetected: Boolean(fusion.reason_codes?.includes?.("global-compression-confounder")),
       biasLog: "Compression and codec signals remain diagnostic, not decisive.",
       modelVersion: report.schema_version || "deterministic-forensic-engine",
@@ -303,7 +380,10 @@ export function useNeuroforge() {
           : sourceName
       ),
       timestamp: new Date().toISOString(),
-      layers,
+      layers: layers.map((layer) => ({
+        ...layer,
+        score: layer.score,
+      })),
       fusionEngine: {
         posterior_probability: score,
         verdict_percent: score * 100,
@@ -314,12 +394,14 @@ export function useNeuroforge() {
           evidence_strength: layer.score,
         })),
       },
-      timeline: [],
+      timeline,
       provenance: {
-        estimated_reencoding_generations: Number(qualityMetrics.estimated_reencoding_generations || 0),
-        compression_artifact_layers: Number(qualityMetrics.compression_artifact_layers || 0),
-        original_quality_estimate: String(qualityMetrics.original_quality_estimate || "unknown"),
-        quantization_table_anomaly: Boolean(qualityMetrics.quantization_table_anomaly),
+        estimated_reencoding_generations: numericMetric(qualityMetrics.estimated_reencoding_generations),
+        compression_artifact_layers: numericMetric(qualityMetrics.compression_artifact_layers),
+        original_quality_estimate: String(qualityMetrics.quality_tier || "unknown"),
+        quantization_table_anomaly: typeof qualityMetrics.quantization_table_anomaly === "boolean"
+          ? qualityMetrics.quantization_table_anomaly
+          : null,
       },
       enhancedAudio: { metrics: {}, processing_time_ms: 0 },
       videoUrl: sourceName,
@@ -343,16 +425,16 @@ export function useNeuroforge() {
   };
 
   const invokeAnalysis = async (url: string, mode: AnalysisMode, signal: AbortSignal, file?: File) => {
-    const localApiUrl = import.meta.env.VITE_FORENSICS_API_URL;
-    if (file || (localApiUrl && !validateYoutubeUrl(url))) {
-      const response = await fetch(`${localApiUrl || "http://localhost:8000"}/analyze`, {
+    const localApiUrl = import.meta.env.VITE_FORENSICS_API_URL || "http://127.0.0.1:8000";
+    if (file || !validateYoutubeUrl(url)) {
+      const response = await fetch(`${localApiUrl}/analyze`, {
         method: "POST",
         body: (() => {
           const form = new FormData();
           if (file) form.append("file", file);
           else form.append("video_path", url);
-          form.append("samples", mode === "deep" ? "96" : "48");
-          form.append("max_frames", mode === "deep" ? "64" : "32");
+          form.append("samples", mode === "deep" ? "64" : "8");
+          form.append("max_frames", mode === "deep" ? "48" : "4");
           return form;
         })(),
         signal,
@@ -361,16 +443,16 @@ export function useNeuroforge() {
       if (!response.ok) throw new Error(payload?.detail || `Forensic API failed (${response.status})`);
       return normalizeLocalReport(payload, file?.name || url);
     }
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
-    const response = await fetch(
-      `${backendUrl}/analyze`,
+    const response = await fetch(`${localApiUrl}/analyze`,
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
-        },
-        body: JSON.stringify({ youtube_url: url, analysis_mode: mode }),
+        body: (() => {
+          const form = new FormData();
+          form.append("youtube_url", url);
+          form.append("samples", mode === "deep" ? "64" : "8");
+          form.append("max_frames", mode === "deep" ? "48" : "4");
+          return form;
+        })(),
         signal,
       }
     );
@@ -378,15 +460,11 @@ export function useNeuroforge() {
     const payload = await response.json().catch(() => null);
 
     if (!response.ok) {
-      const backendError = payload?.error || `Analysis failed (${response.status})`;
+      const backendError = payload?.detail || payload?.error || `Analysis failed (${response.status})`;
       throw new Error(parseAnalysisError(backendError));
     }
 
-    if (payload?.error) {
-      throw new Error(parseAnalysisError(payload.error));
-    }
-
-    return payload as AnalysisResult;
+    return normalizeLocalReport(payload, url);
   };
 
   const runAnalysis = useCallback(async (url: string, mode: AnalysisMode, file?: File) => {

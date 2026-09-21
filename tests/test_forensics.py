@@ -1,5 +1,6 @@
 import json
 import wave
+import asyncio
 
 import pytest
 import numpy as np
@@ -21,8 +22,11 @@ from forensic_video.production import (
     apply_reconciliation_to_fusion,
     build_analysis_outputs,
     reconcile_analysis_outputs,
+    run_optional_routers,
 )
 from forensic_video.production import _apply_router_policy
+from forensic_video.api import _router_configuration
+from forensic_video import api as forensic_api
 
 
 def test_synthetic_analysis_is_json_serializable(tmp_path):
@@ -47,6 +51,59 @@ def test_synthetic_analysis_is_json_serializable(tmp_path):
     assert data["analysis_outputs"]["binary_authenticity_router"]["status"] == "not_configured"
     assert data["analysis_reconciliation"]["status"] == "inconclusive"
     json.dumps(data, allow_nan=False)
+
+
+def test_api_discovers_standard_protected_snapshot(monkeypatch, tmp_path):
+    worktree = tmp_path / "worktree" / "neuroforge-deterministic-forensics"
+    snapshot = worktree.parent / "The-Neuroforge-production-final-year-snapshot-2026-09-10"
+    specialist = snapshot / "training" / "runs" / "expanded-efficientnet-controlled-saved"
+    binary = snapshot / "training" / "runs" / "binary-authenticity-efficientnet"
+    specialist.mkdir(parents=True)
+    binary.mkdir(parents=True)
+    (specialist / "router_best.pt").write_bytes(b"checkpoint")
+    (binary / "router_best.pt").write_bytes(b"checkpoint")
+    monkeypatch.delenv("NEUROFORGE_PRODUCTION_SNAPSHOT_ROOT", raising=False)
+    monkeypatch.delenv("NEUROFORGE_ROUTER_CHECKPOINT", raising=False)
+    monkeypatch.delenv("NEUROFORGE_GENERAL_CHECKPOINT", raising=False)
+    monkeypatch.setenv("NEUROFORGE_ENABLE_ROUTERS", "1")
+    monkeypatch.setattr(
+        forensic_api,
+        "__file__",
+        str(worktree / "forensic_video" / "api.py"),
+    )
+    root, specialist_path, binary_path = _router_configuration()
+    assert root == str(snapshot)
+    assert specialist_path == str(specialist / "router_best.pt")
+    assert binary_path == str(binary / "router_best.pt")
+
+
+def test_api_accepts_youtube_url_and_analyzes_downloaded_file(monkeypatch, tmp_path):
+    downloaded = tmp_path / "youtube.mp4"
+    downloaded.write_bytes(b"fixture")
+
+    monkeypatch.setattr(
+        forensic_api,
+        "_download_youtube",
+        lambda url, directory: downloaded,
+    )
+    monkeypatch.setattr(
+        forensic_api,
+        "analyze_video",
+        lambda path, config: type("Report", (), {"to_dict": lambda self: {
+            "metadata": {"path": path},
+            "fusion": {"label": "low-anomaly-signal", "score": 0.1},
+        }})(),
+    )
+
+    result = asyncio.run(forensic_api.analyze(
+        video_path=None,
+        file=None,
+        youtube_url="https://www.youtube.com/watch?v=fixture",
+        samples=48,
+        max_frames=32,
+    ))
+    assert result["fusion"]["label"] == "low-anomaly-signal"
+    assert result["metadata"]["path"] == str(downloaded)
 
 
 def test_cross_system_reconciliation_surfaces_router_conflict():
@@ -161,6 +218,29 @@ def test_router_policy_retains_abstention_below_confidence():
     })
     assert result["status"] == "abstain"
     assert result["label"] == "unknown"
+
+
+def test_optional_router_timeout_does_not_block_deterministic_path(monkeypatch, tmp_path):
+    helper_dir = tmp_path / "backend" / "forensic-service"
+    helper_dir.mkdir(parents=True)
+    (helper_dir / "routing_helpers.py").write_text(
+        "import time\n"
+        "def classify_with_router(frames, checkpoint):\n"
+        "    time.sleep(10)\n"
+        "def classify_with_general_model(frames, checkpoint):\n"
+        "    time.sleep(10)\n",
+        encoding="utf-8",
+    )
+    checkpoint = tmp_path / "router.pt"
+    checkpoint.write_bytes(b"fixture")
+    monkeypatch.setenv("NEUROFORGE_ROUTER_TIMEOUT_SECONDS", "0.1")
+    outputs = run_optional_routers(
+        [np.zeros((2, 2, 3), dtype=np.uint8)],
+        snapshot_root=str(tmp_path),
+        specialist_checkpoint=str(checkpoint),
+    )
+    assert outputs["specialist_three_class_router"]["status"] == "error"
+    assert "timed out" in outputs["specialist_three_class_router"]["error"]
 
 
 def test_routers_abstain_when_video_has_no_face_evidence():
